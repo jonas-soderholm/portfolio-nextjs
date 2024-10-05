@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
   { logoSrc: "/python.png", name: "Python" },
@@ -68,6 +69,8 @@ function Toolkit() {
        justify-center rounded-xl shadow-2xl relative md:mb-0 mb-[5rem]"
       data-aos="fade-up"
     >
+      <BorderBeam />
+
       <div
         className={`font-bold md:text-3xl text-xl absolute top-0 left-0 right-0 md:mt-[-4rem] mt-[-3.3rem] ${
           darkMode ? "text-dark" : "text-light"
