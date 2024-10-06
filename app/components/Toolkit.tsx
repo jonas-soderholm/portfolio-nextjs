@@ -7,19 +7,17 @@ import "aos/dist/aos.css";
 import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
-  { logoSrc: "/python.png", name: "Python" },
+  { logoSrc: "/python.png", name: "TypeScript" },
+  { logoSrc: "/react-logo.png", name: "React/Next" },
   { logoSrc: "/js-logo.png", name: "JavaScript" },
-  { logoSrc: "/react-logo.png", name: "React" },
+  { logoSrc: "/python.png", name: "Python" },
   { logoSrc: "/django.png", name: "Django" },
   { logoSrc: "/node-logo.png", name: "Node.js" },
   { logoSrc: "/express-logo.png", name: "Express" },
   { logoSrc: "/threejs-logo.png", name: "Three.js" },
   { logoSrc: "/database.png", name: "SQL/NoSQL" },
-  { logoSrc: "/tailwind-logo.png", name: "Tailwind" },
-  { logoSrc: "/bootstrap.png", name: "Bootstrap" },
-  { logoSrc: "/css-logo.png", name: "CSS" },
-  { logoSrc: "/html-logo.png", name: "HTML" },
-  { logoSrc: "/csharp-logo.png", name: "C-Sharp" },
+  // { logoSrc: "/tailwind-logo.png", name: "Tailwind" },
+  // { logoSrc: "/bootstrap.png", name: "Bootstrap" },
   { logoSrc: "/vs-logo.png", name: "VS Code" },
   { logoSrc: "/linux-logo.png", name: "Linux" },
   { logoSrc: "/windows-logo.png", name: "Windows" },
@@ -39,18 +37,18 @@ const xr_tools = [
 ];
 
 const devops_tools = [
-  { logoSrc: "/kubernetes.png", name: "Kubernetes" },
   { logoSrc: "/docker-logo.png", name: "Docker" },
+  { logoSrc: "/kubernetes.png", name: "Kubernetes" },
+  { logoSrc: "/gitactions.png", name: "Git Actions" },
+  { logoSrc: "/github-logo.png", name: "Github" },
+  { logoSrc: "/gitlab.png", name: "Gitlab" },
+  { logoSrc: "/azure.png", name: "Azure" },
   { logoSrc: "/argocd.png", name: "ArgoCD" },
   { logoSrc: "/rancher.png", name: "Rancher" },
   { logoSrc: "/terraform.png", name: "Terraform" },
   { logoSrc: "/prometheus.png", name: "Prometheus" },
   { logoSrc: "/loki.png", name: "Loki" },
   { logoSrc: "/grafana.png", name: "Grafana" },
-  { logoSrc: "/azure.png", name: "Azure" },
-  { logoSrc: "/gitactions.png", name: "Git Actions" },
-  { logoSrc: "/github-logo.png", name: "Github" },
-  { logoSrc: "/gitlab.png", name: "Gitlab" },
 ];
 
 function Toolkit() {

@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FaGithub } from "react-icons/fa"; // Import FontAwesome GitHub icon
+import { FiExternalLink } from "react-icons/fi";
 
 function Projects() {
   const containerRef = useRef(null);
@@ -27,6 +29,7 @@ function Projects() {
       ],
       video: "https://www.youtube.com/embed/BU2-Aq5JT0k",
       url: "https://fastxr.jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
       title: "MapTagger",
@@ -41,6 +44,7 @@ function Projects() {
       ],
       image: "/maptagger.png",
       url: "https://maptagger.xyz",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
       title: "Saveer",
@@ -54,6 +58,7 @@ function Projects() {
       ],
       image: "/saveer_dark.png",
       url: "https://saveer.jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
       title: "3D Showroom",
@@ -61,6 +66,7 @@ function Projects() {
       language: ["Three.js", "React", "React Fiber"],
       image: "/450.png",
       url: "https://project-450.netlify.app/",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
       title: "Folkets reklam",
@@ -68,6 +74,7 @@ function Projects() {
       language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
       image: "/folkets.png",
       url: "https://folketsreklam.jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
     },
   ];
 
@@ -83,52 +90,48 @@ function Projects() {
     return cards.map((properties) => (
       <div
         key={properties.title}
-        className={`border-2 p-2 shadow-2xl border-gray-300 border-opacity-10 m-2 rounded-lg hover:cursor-pointer ${
+        className={`shadow-2xl border-opacity-10 m-2 rounded-lg overflow-hidden flex flex-col text-slate-200 ${
           darkMode ? "bg-dark" : "bg-light"
-        }`}
-        onClick={() => handleCardClick(properties.url)}
-        // data-aos="flip-right" // Added AOS animation
+        } md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
       >
-        <div
-          className={`flex flex-col mx-2 items-center ${
-            darkMode ? "text-dark" : "text-light"
-          } mt-4`}
-        >
-          <h2 className="md:text-3xl text-xl font-semibold header-font mb-3">
+        <img
+          src={properties.image}
+          alt={properties.title}
+          className="w-full h-[200px] object-cover" // Fixed height for images
+        />
+        <div className="flex flex-col flex-grow p-3">
+          <h2 className="md:text-lg text-sm font-semibold mb-1">
             {properties.title}
           </h2>
-          <div className="card rounded-3xl md:w-[30rem] w-[18rem] flex flex-col items-center">
-            {properties.video ? (
-              <iframe
-                src={properties.video}
-                title={properties.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="rounded-2xl md:w-[30rem] md:h-[17rem] h-[12rem] w-auto object-cover transition duration-300 ease-in-out transform hover:brightness-75"
-              ></iframe>
-            ) : (
-              <img
-                src={properties.image}
-                alt={properties.title}
-                className="rounded-2xl md:w-[30rem] md:h-[17rem] w-[25rem] h-[12rem] object-cover transition duration-300 ease-in-out transform hover:brightness-75"
-              />
-            )}
-            <p className="md:text-xl text-center mt-4">
-              {properties.description}
-            </p>
-            <div className="p-3 flex flex-col items-center">
-              <div className="flex flex-wrap gap-2 mb-2 justify-center">
-                {properties.language.map((language, index) => (
-                  <div
-                    key={index}
-                    className="bg-stone-800 text-xs text-gray-200 py-1 px-2 rounded-full md:text-sm text-[8px]"
-                  >
-                    {language}
-                  </div>
-                ))}
+          <p
+            className="md:text-xs flex-grow overflow-hidden"
+            style={{ maxHeight: "4.5em" }}
+          >
+            {properties.description}
+          </p>
+          <div className="flex flex-wrap gap-2 my-4">
+            {properties.language.map((language, index) => (
+              <div
+                key={index}
+                className="bg-stone-800 text-[12px] text-gray-200 py-1 px-2 rounded-full"
+              >
+                {language}
               </div>
-            </div>
+            ))}
+          </div>
+          <div className="mt-auto flex gap-2 text-[12px]">
+            <button
+              onClick={() => window.open(properties.url, "_blank")}
+              className="flex items-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-1 px-2 rounded"
+            >
+              <FiExternalLink className="mr-1" /> Website
+            </button>
+            <button
+              onClick={() => window.open(properties.gitsource, "_blank")}
+              className="flex items-center bg-gray-800 hover:bg-gray-900 text-white font-bold px-2 rounded"
+            >
+              <FaGithub className="mr-1" /> Source
+            </button>
           </div>
         </div>
       </div>
@@ -152,11 +155,11 @@ function Projects() {
 
       <div
         className="card-container mx-auto mt-8 scrollbar-hide body-text-medium"
-        style={{ maxWidth: "1500px" }}
+        style={{ maxWidth: "1300px" }}
         ref={containerRef}
       >
         <div
-          className="containerZZ individual-cards flex flex-wrap justify-center m-5 md:gap-20"
+          className="containerZZ individual-cards flex flex-wrap justify-center m-5 "
           style={{ height: "auto" }}
         >
           <RenderCards />
@@ -165,5 +168,4 @@ function Projects() {
     </>
   );
 }
-
 export default Projects;
