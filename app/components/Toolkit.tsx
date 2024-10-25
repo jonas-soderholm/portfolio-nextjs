@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
-  { logoSrc: "/python.png", name: "TypeScript" },
+  { logoSrc: "/typescript.png", name: "TypeScript" },
   { logoSrc: "/react-logo.png", name: "React/Next" },
   { logoSrc: "/js-logo.png", name: "JavaScript" },
   { logoSrc: "/python.png", name: "Python" },

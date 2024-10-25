@@ -91,7 +91,7 @@ function Projects() {
       <div
         key={properties.title}
         className={`shadow-2xl border-opacity-10 m-2 rounded-lg overflow-hidden flex flex-col text-slate-200 ${
-          darkMode ? "bg-dark" : "bg-light"
+          darkMode ? "bg-stone-800" : "bg-light"
         } md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
       >
         <img
@@ -113,7 +113,7 @@ function Projects() {
             {properties.language.map((language, index) => (
               <div
                 key={index}
-                className="bg-stone-800 text-[12px] text-gray-200 py-1 px-2 rounded-full"
+                className="bg-gray-600 text-[12px] text-gray-200 py-1 px-2 rounded-full"
               >
                 {language}
               </div>
@@ -122,7 +122,7 @@ function Projects() {
           <div className="mt-auto flex gap-2 text-[12px]">
             <button
               onClick={() => window.open(properties.url, "_blank")}
-              className="flex items-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-1 px-2 rounded"
+              className="flex items-center bg-slate-700 hover:bg-gray-900 text-white font-bold py-1 px-2 rounded"
             >
               <FiExternalLink className="mr-1" /> Website
             </button>
