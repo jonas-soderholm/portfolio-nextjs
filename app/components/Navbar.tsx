@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BsFillMoonStarsFill, BsSunFill, BsList } from "react-icons/bs";
+import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import { useDarkMode } from "./DarkModeContext";
 
 function Navbar() {
