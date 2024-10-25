@@ -1,48 +1,3 @@
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { useDarkMode } from "./DarkModeContext";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
-
-// function Experience() {
-//   const { darkMode } = useDarkMode();
-
-//   const experienceInformation = [
-//     {
-//       name: "item-1",
-//       header: "Github",
-//       linkText: "Visit my Github",
-//       info: "https://github.com/jonas-soderholm",
-//       image: "/school.png",
-//     },
-//     {
-//       name: "item-2",
-//       header: "CV",
-//       linkText: "View my CV",
-//       info: "https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing",
-//       image: "/CV.jpg",
-//     },
-//     {
-//       name: "item-3",
-//       header: "LinkedIn",
-//       linkText: "Connect with me on LinkedIn",
-//       info: "https://www.linkedin.com/in/jonas-soderholm/",
-//       image: "/linkedin.jpg",
-//     },
-//     {
-//       name: "item-4",
-//       header: "My Hobbies",
-//       linkText: "I love computers, technology, working out, and friends! :)",
-//       // Removed info and href for hobbies
-//       image: "/motherboard.jpg",
-//     },
-//   ];
-
-// }
-
-// export default Experience;
-
 "use client";
 
 import React, { forwardRef, useRef } from "react";
@@ -50,6 +5,7 @@ import React, { forwardRef, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "./ui/animated-beam";
 import { Linkedin } from "lucide-react";
+import { useDarkMode } from "./DarkModeContext";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -59,8 +15,8 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex items-center justify-center size-[5rem] rounded-xl border-2 bg-slate-700",
-        className?.includes("fill") ? "p-0" : "p-3", // Removes padding when "fill" is applied
+        "z-10 flex items-center justify-center size-[5rem] border-[#4f4f4f] rounded-xl border-2 bg-stone-800",
+        className?.includes("fill") ? "p-0" : "p-3",
         className
       )}
     >
@@ -80,14 +36,13 @@ function Experience() {
   const div5Ref = useRef<HTMLDivElement>(null);
   const div6Ref = useRef<HTMLDivElement>(null);
   const div7Ref = useRef<HTMLDivElement>(null);
-
+  const darkMode = useDarkMode();
   const experienceInformation = [
     {
       name: "item-1",
       header: "Github",
-      linkText: "Visit my Github",
+
       info: "https://github.com/jonas-soderholm",
-      image: "/school.png",
     },
     {
       name: "item-2",
@@ -112,7 +67,9 @@ function Experience() {
 
   return (
     <div
-      className="relative flex h-[500px] w-full items-center justify-center overflow-hidden bg-black p-10 md:shadow-xl"
+      className={`relative flex h-[500px] w-full items-center justify-center overflow-hidden ${
+        darkMode ? "text-dark" : "text-light"
+      } p-10`}
       ref={containerRef}
     >
       <div className="flex size-full flex-col max-w-lg max-h-[200px] items-stretch justify-between gap-10">
@@ -120,28 +77,28 @@ function Experience() {
           <Circle ref={div1Ref}>
             <Icons.cv />
           </Circle>
-          <Circle ref={div5Ref}>
-            <Icons.linkedin />
-          </Circle>
         </div>
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div2Ref}>
             <Icons.github />
           </Circle>
-          <Circle ref={div4Ref} className="size-16">
-            <Icons.profilePicture />
-          </Circle>
+        </div>
+        <div className="flex flex-row items-center justify-between">
+          {/* <Circle ref={div3Ref}>
+            <Icons.whatsapp />
+          </Circle> */}
           <Circle ref={div6Ref}>
             <Icons.certifications />
           </Circle>
-        </div>
-        <div className="flex flex-row items-center justify-between">
-          <Circle ref={div3Ref}>
-            <Icons.whatsapp />
+          <Circle ref={div4Ref} className="size-16">
+            <Icons.profilePicture />
           </Circle>
-          <Circle ref={div7Ref}>
+          <Circle ref={div5Ref}>
+            <Icons.linkedin />
+          </Circle>
+          {/* <Circle ref={div7Ref}>
             <Icons.messenger />
-          </Circle>
+          </Circle> */}
         </div>
       </div>
 
@@ -192,30 +149,38 @@ function Experience() {
 
 const Icons = {
   github: () => (
-    <svg
-      width="100"
-      height="100"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <a
+      href="https://github.com/jonas-soderholm"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <path
-        d="M12 .296c-6.627 0-12 5.373-12 12 0 5.304 3.438 9.8 8.205 11.388.6.111.793-.261.793-.577 0-.285-.010-1.238-.016-2.243-3.338.725-4.043-1.607-4.043-1.607-.546-1.384-1.333-1.754-1.333-1.754-1.087-.743.083-.728.083-.728 1.205.084 1.838 1.237 1.838 1.237 1.067 1.826 2.8 1.299 3.482.992.108-.773.42-1.299.762-1.599-2.665-.303-5.465-1.332-5.465-5.923 0-1.308.467-2.378 1.238-3.22-.125-.303-.537-1.527.116-3.176 0 0 1.007-.322 3.302 1.229.957-.266 1.987-.398 3.005-.402 1.018.004 2.048.136 3.005.402 2.295-1.551 3.302-1.229 3.302-1.229.653 1.649.242 2.873.118 3.176.773.842 1.238 1.912 1.238 3.22 0 4.607-2.805 5.617-5.466 5.92.43.37.813 1.097.813 2.21 0 1.592-.014 2.868-.016 3.253 0 .32.191.693.797.577C20.565 22.097 24 17.601 24 12.296c0-6.627-5.373-12-12-12z"
-        fill="#000000"
-      />
-    </svg>
+      <svg
+        width="65"
+        height="65"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 .296c-6.627 0-12 5.373-12 12 0 5.304 3.438 9.8 8.205 11.388.6.111.793-.261.793-.577 0-.285-.010-1.238-.016-2.243-3.338.725-4.043-1.607-4.043-1.607-.546-1.384-1.333-1.754-1.333-1.754-1.087-.743.083-.728.083-.728 1.205.084 1.838 1.237 1.838 1.237 1.067 1.826 2.8 1.299 3.482.992.108-.773.42-1.299.762-1.599-2.665-.303-5.465-1.332-5.465-5.923 0-1.308.467-2.378 1.238-3.22-.125-.303-.537-1.527.116-3.176 0 0 1.007-.322 3.302 1.229.957-.266 1.987-.398 3.005-.402 1.018.004 2.048.136 3.005.402 2.295-1.551 3.302-1.229 3.302-1.229.653 1.649.242 2.873.118 3.176.773.842 1.238 1.912 1.238 3.22 0 4.607-2.805 5.617-5.466 5.92.43.37.813 1.097.813 2.21 0 1.592-.014 2.868-.016 3.253 0 .32.191.693.797.577C20.565 22.097 24 17.601 24 12.296c0-6.627-5.373-12-12-12z"
+          fill="#000000"
+        />
+      </svg>
+    </a>
   ),
+
   profilePicture: () => (
     <span
+      className="header-font"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         width: "100px",
         height: "100px",
-        color: "black",
+        color: "white",
         borderRadius: "10px",
-        fontSize: "18px",
+        fontSize: "15px",
         fontWeight: "bold",
       }}
     >
@@ -223,21 +188,25 @@ const Icons = {
     </span>
   ),
   cv: () => (
-    <span
+    <a
+      href="https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing"
+      target="_blank" // Opens the link in a new tab
+      rel="noopener noreferrer" // Security measure
+      className="header-font mt-2"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         width: "100px",
         height: "100px",
-        color: "black",
+        color: "white",
         borderRadius: "10px",
-        fontSize: "18px",
-        fontWeight: "bold",
+        fontSize: "35px",
+        textDecoration: "none", // Removes underline from the link
       }}
     >
       CV
-    </span>
+    </a>
   ),
   whatsapp: () => (
     <svg
@@ -294,21 +263,33 @@ const Icons = {
     </svg>
   ),
   linkedin: () => (
-    <img
-      src="/linkedinlogo.png" // Adjust the path to your image
-      alt="My Image"
-      width="100"
-      height="100"
-    />
+    <a
+      href="https://www.linkedin.com/in/jonas-soderholm/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/linkedinlogo.png" // Adjust the path to your image
+        alt="My Image"
+        width="100"
+        height="100"
+      />
+    </a>
   ),
 
   certifications: () => (
-    <img
-      src="/cert.png" // Adjust the path to your image
-      alt="My Image"
-      width="100"
-      height="100"
-    />
+    <a
+      href="https://www.linkedin.com/in/jonas-soderholm/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/cert.png" // Adjust the path to your image
+        alt="My Image"
+        width="100"
+        height="100"
+      />
+    </a>
   ),
 
   messenger: () => (

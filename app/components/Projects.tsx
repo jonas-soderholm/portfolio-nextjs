@@ -90,9 +90,9 @@ function Projects() {
     return cards.map((properties) => (
       <div
         key={properties.title}
-        className={`shadow-2xl border-opacity-10 m-2 rounded-lg overflow-hidden flex flex-col text-slate-200 ${
-          darkMode ? "bg-stone-800" : "bg-light"
-        } md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
+        className={`shadow-2xl border-opacity-10 m-2 rounded-lg overflow-hidden flex flex-col text-slate-200
+          bg-stone-800
+         md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
       >
         <img
           src={properties.image}
@@ -122,13 +122,13 @@ function Projects() {
           <div className="mt-auto flex gap-2 text-[12px]">
             <button
               onClick={() => window.open(properties.url, "_blank")}
-              className="flex items-center bg-slate-700 hover:bg-gray-900 text-white font-bold py-1 px-2 rounded"
+              className="flex items-center  hover:bg-[#66a430] text-black bg-[#8eff2b] font-bold py-1 px-2 rounded"
             >
               <FiExternalLink className="mr-1" /> Website
             </button>
             <button
               onClick={() => window.open(properties.gitsource, "_blank")}
-              className="flex items-center bg-gray-800 hover:bg-gray-900 text-white font-bold px-2 rounded"
+              className="flex items-center text-black bg-[#8eff2b] hover:bg-[#66a430] font-bold px-2 rounded"
             >
               <FaGithub className="mr-1" /> Source
             </button>
