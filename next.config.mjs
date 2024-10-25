@@ -3,12 +3,11 @@
 
 // export default nextConfig;
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: "dist", // Custom output directory
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // Ignore ESLint during builds if desired
   },
-  output: "export", // This will output the build to an 'out' directory for static export
 };
 
 export default nextConfig;
