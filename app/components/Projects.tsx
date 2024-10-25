@@ -27,23 +27,8 @@ function Projects() {
         "C#",
         "Unity VR Multiplayer",
       ],
-      video: "https://www.youtube.com/embed/BU2-Aq5JT0k",
-      url: "https://fastxr.jonas-soderholm.dev/",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
-    },
-    {
-      title: "MapTagger",
-      description: "Share your marks!",
-      language: [
-        "Node",
-        "Express",
-        "React",
-        "MySQL",
-        "Authentication",
-        "Share tags!",
-      ],
-      image: "/maptagger.png",
-      url: "https://maptagger.xyz",
+      image: "https://www.youtube.com/embed/BU2-Aq5JT0k",
+      url: "https://www.youtube.com/embed/BU2-Aq5JT0k",
       gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
@@ -69,6 +54,21 @@ function Projects() {
       gitsource: "https://github.com/jonas-soderholm.dev/",
     },
     {
+      title: "MapTagger",
+      description: "Share your marks!",
+      language: [
+        "Node",
+        "Express",
+        "React",
+        "MySQL",
+        "Authentication",
+        "Share tags!",
+      ],
+      image: "/maptagger.png",
+      url: "https://maptagger.xyz",
+      gitsource: "https://github.com/jonas-soderholm.dev/",
+    },
+    {
       title: "Folkets reklam",
       description: "Donate towards a better society!",
       language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
@@ -90,15 +90,25 @@ function Projects() {
     return cards.map((properties) => (
       <div
         key={properties.title}
-        className={`shadow-2xl border-opacity-10 m-2 rounded-lg overflow-hidden flex flex-col text-slate-200
-          bg-stone-800
-         md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
+        className={`shadow-2xl border-opacity-10 m-2 border-2 border-stone-800 rounded-lg overflow-hidden flex flex-col text-slate-200 bg-stone-800 md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
       >
-        <img
-          src={properties.image}
-          alt={properties.title}
-          className="w-full h-[200px] object-cover" // Fixed height for images
-        />
+        {properties.title === "FastXR" ? ( // Check if the title is "FastXR"
+          <iframe
+            width="100%"
+            height="200px"
+            src="https://www.youtube.com/embed/BU2-Aq5JT0k?autoplay=1&loop=1&playlist=BU2-Aq5JT0k&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&mute=1"
+            title={properties.title}
+            frameBorder="0"
+            allow="autoplay"
+            className="object-cover" // Maintain aspect ratio
+          ></iframe>
+        ) : (
+          <img
+            src={properties.image}
+            alt={properties.title}
+            className="w-full h-[200px] object-cover" // Fixed height for images
+          />
+        )}
         <div className="flex flex-col flex-grow p-3">
           <h2 className="md:text-lg text-sm font-semibold mb-1">
             {properties.title}
@@ -122,7 +132,7 @@ function Projects() {
           <div className="mt-auto flex gap-2 text-[12px]">
             <button
               onClick={() => window.open(properties.url, "_blank")}
-              className="flex items-center  hover:bg-[#66a430] text-black bg-[#8eff2b] font-bold py-1 px-2 rounded"
+              className="flex items-center hover:bg-[#66a430] text-black bg-[#8eff2b] font-bold py-1 px-2 rounded"
             >
               <FiExternalLink className="mr-1" /> Website
             </button>

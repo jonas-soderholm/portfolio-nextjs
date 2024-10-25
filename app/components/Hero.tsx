@@ -41,7 +41,7 @@ function AddStar({
   return (
     <div
       id={id}
-      className="stars absolute "
+      className="stars absolute"
       style={{
         top: positionY,
         left: positionX,
