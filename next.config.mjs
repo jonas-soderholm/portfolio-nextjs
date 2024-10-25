@@ -14,8 +14,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone", // Ensure standalone mode, compatible with Vercel's serverless functions
   eslint: {
-    ignoreDuringBuilds: true, // Skip ESLint errors in production build if needed
+    ignoreDuringBuilds: true, // Skip ESLint errors in production builds if necessary
   },
 };
 
