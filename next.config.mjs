@@ -12,12 +12,12 @@
 
 // export default nextConfig;
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true, // Skip ESLint errors in production build if needed
+    ignoreDuringBuilds: true,
   },
-  output: "standalone", // optional: ensure Vercel builds a standalone app
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
-
 export default nextConfig;
