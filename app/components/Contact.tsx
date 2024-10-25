@@ -1,7 +1,7 @@
 "use client";
 
 import { useDarkMode } from "./DarkModeContext";
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -10,9 +10,7 @@ function Contact() {
 
   useEffect(() => {
     AOS.init({ duration: 350 });
-    // Refresh AOS on dark mode toggle
-    AOS.refresh();
-  }, [darkMode]); // Dependency on darkMode
+  }, []);
 
   return (
     <div
@@ -40,3 +38,5 @@ function Contact() {
 }
 
 export default Contact;
+
+// asdKKC
