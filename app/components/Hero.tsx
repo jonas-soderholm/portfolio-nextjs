@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
-import ShimmerButton from "./ui/shimmer-button";
 
 interface AddStarProps {
   initialSize: number;
@@ -27,16 +26,21 @@ function AddStar({
 
   // Animate stars
   useEffect(() => {
-    setTimeout(() => {
+    const scaleUpTimeout = setTimeout(() => {
       setSize(initialSize);
     }, scaleUpTime);
 
-    setTimeout(() => {
+    const scaleDownTimeout = setTimeout(() => {
       if (!remainVisible) {
         setSize(0);
       }
     }, scaleDownTime);
-  }, []);
+
+    return () => {
+      clearTimeout(scaleUpTimeout);
+      clearTimeout(scaleDownTimeout);
+    };
+  }, [initialSize, scaleUpTime, scaleDownTime, remainVisible]);
 
   return (
     <div
@@ -56,14 +60,26 @@ function AddStar({
 }
 
 function Hero() {
-  const [headerPosition, setheaderPosition] = useState(400);
+  const [headerPosition, setHeaderPosition] = useState(400);
   const [underHeaderOpacity, setUnderHeaderOpacity] = useState(0);
-  const isPhone = window.innerWidth < 768;
-  const starSizer = isPhone ? 10 : 5;
-  console.log(starSizer);
-  let rotatingStar = document.getElementById("starRotator");
-
+  const [isPhone, setIsPhone] = useState(false); // State for phone check
   const { darkMode } = useDarkMode();
+
+  // Check window size after mount
+  useEffect(() => {
+    const checkIsPhone = () => {
+      setIsPhone(window.innerWidth < 768);
+    };
+
+    checkIsPhone(); // Initial check
+    window.addEventListener("resize", checkIsPhone); // Add resize event listener
+
+    return () => {
+      window.removeEventListener("resize", checkIsPhone); // Cleanup
+    };
+  }, []);
+
+  const starSizer = isPhone ? 10 : 5;
 
   const starConfigurations = {
     phone: [
@@ -138,11 +154,9 @@ function Hero() {
   // Scroll rotate visual star
   useEffect(() => {
     const handleScroll = () => {
-      if (rotatingStar === null) {
-        rotatingStar = document.getElementById("starRotator");
-      } else {
-        rotatingStar.style.transform =
-          "rotate(" + window.pageYOffset / 2 + "deg)";
+      const rotatingStar = document.getElementById("starRotator");
+      if (rotatingStar) {
+        rotatingStar.style.transform = `rotate(${window.pageYOffset / 2}deg)`;
       }
     };
 
@@ -156,7 +170,7 @@ function Hero() {
   // Animate header and main
   useEffect(() => {
     const animationTimeout = setTimeout(() => {
-      setheaderPosition(0);
+      setHeaderPosition(0);
       setTimeout(() => {
         setUnderHeaderOpacity(1);
       }, 800);
@@ -183,7 +197,7 @@ function Hero() {
           <div className="text-center p-5 py-5 flex-1 ">
             <div className="mainHeader header-font pt-4 overflow-hidden">
               <h2
-                className=" font-bold py-0 mb-6 md:text-[5vw] max-w-[60rem] mx-auto text-5xl header-font"
+                className="font-bold py-0 mb-6 md:text-[5vw] max-w-[60rem] mx-auto text-5xl header-font"
                 style={{
                   transition: "transform 0.6s ease-in-out",
                   transform: `translateY(+${headerPosition}px)`,
@@ -202,13 +216,13 @@ function Hero() {
                 transition: "opacity 0.5s ease-in-out",
               }}
             >
-              <h3 className="font-Heebo  max-w-4xl m-auto font-bold text-lg py-0 md:text-2xl body-text-medium">
+              <h3 className="font-Heebo max-w-4xl m-auto font-bold text-lg py-0 md:text-2xl body-text-medium">
                 I code solutions for smooth, secure and easy-to-use applications
                 and ensure efficient deployments using CI/CD.
               </h3>
             </div>
           </div>
-          {/* // Staranimations */}
+          {/* // Star animations */}
           {isPhone
             ? starConfigurations.phone.map((config) => (
                 <AddStar key={config.id} {...config} />
