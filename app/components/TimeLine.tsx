@@ -14,9 +14,9 @@ function TimeLine() {
     <>
       <div id="experience"></div>
       <ul
-        data-aos="flip-down"
+        data-aos="zoom-in"
         data-aos-easing="ease-out-cubic"
-        data-aos-duration="1000"
+        data-aos-duration="500"
         className="timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-600"
       >
         <li>
