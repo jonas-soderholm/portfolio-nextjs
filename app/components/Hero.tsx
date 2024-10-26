@@ -181,7 +181,7 @@ function Hero() {
 
   return (
     <div
-      className="main-container pointer"
+      className="main-container pointer flex justify-center items-center"
       style={{
         transition: "transform 0.3s ease-in-out",
         transform: `translateY(-${0}px)`,
@@ -190,14 +190,14 @@ function Hero() {
       <div
         className={`${
           darkMode ? "text-dark" : "text-light"
-        } hero-content md:mx-[4rem] rounded-xl h-[85vh] flex flex-col justify-center overflow-hidden `}
+        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-center overflow-hidden max-w-[80vw] md:max-w-[60vw] mx-auto`}
       >
         <div className="w-full overflow-x-hidden"></div>
-        <div className="p-0 flex justify-between gap-2 relative">
-          <div className="text-center p-5 py-5 flex-1 ">
+        <div className="p-0 flex flex-col items-center gap-4 relative w-full">
+          <div className="text-center p-5 py-5 w-full">
             <div className="mainHeader header-font pt-4 overflow-hidden">
               <h2
-                className="font-bold py-0 mb-6 md:text-[5vw] max-w-[60rem] mx-auto text-5xl header-font"
+                className="font-bold py-0 mb-6 md:text-[5vw] text-5xl header-font mx-auto"
                 style={{
                   transition: "transform 0.6s ease-in-out",
                   transform: `translateY(+${headerPosition}px)`,
@@ -210,19 +210,19 @@ function Hero() {
               </h2>
             </div>
             <div
-              className="underHeader"
+              className="underHeader text-center"
               style={{
                 opacity: underHeaderOpacity,
                 transition: "opacity 0.5s ease-in-out",
               }}
             >
-              <h3 className="font-Heebo max-w-4xl m-auto font-bold text-lg py-0 md:text-2xl body-text-medium">
-                I code solutions for smooth, secure and easy-to-use applications
-                and ensure efficient deployments using CI/CD.
+              <h3 className="font-Heebo font-bold text-lg py-0 md:text-2xl max-w-[50rem] mx-auto body-text-medium">
+                I code solutions for smooth, secure, and easy-to-use
+                applications and ensure efficient deployments using CI/CD.
               </h3>
             </div>
           </div>
-          {/* // Star animations */}
+          {/* Star animations */}
           {isPhone
             ? starConfigurations.phone.map((config) => (
                 <AddStar key={config.id} {...config} />
