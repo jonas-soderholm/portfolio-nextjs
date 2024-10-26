@@ -194,7 +194,7 @@ function Hero() {
             <div className="mainHeader header-font pt-4 overflow-hidden">
               <h2
                 className={`font-bold py-0 mb-6 header-font mx-auto ${
-                  isPhone ? "text-4xl leading-snug" : "text-[4vw] leading-tight"
+                  isPhone ? "text-4xl mt-[-1rem]" : "text-[4vw] leading-tight"
                 }`}
                 style={{
                   transition: "transform 0.6s ease-in-out",
