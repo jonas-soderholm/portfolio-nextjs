@@ -94,7 +94,7 @@ body {
 
 .header-font {
   font-family: "Acorn", sans-serif;
-  letter-spacing: 0.1em; /* Adjust as needed */
+  /* letter-spacing: 0.1em; */
 }
 
 .montserrat-font {
