@@ -24,7 +24,6 @@ function AddStar({
 }: AddStarProps) {
   const [size, setSize] = useState(0);
 
-  // Animate stars
   useEffect(() => {
     const scaleUpTimeout = setTimeout(() => {
       setSize(initialSize);
@@ -62,20 +61,19 @@ function AddStar({
 function Hero() {
   const [headerPosition, setHeaderPosition] = useState(400);
   const [underHeaderOpacity, setUnderHeaderOpacity] = useState(0);
-  const [isPhone, setIsPhone] = useState(false); // State for phone check
+  const [isPhone, setIsPhone] = useState(false);
   const { darkMode } = useDarkMode();
 
-  // Check window size after mount
   useEffect(() => {
     const checkIsPhone = () => {
       setIsPhone(window.innerWidth < 768);
     };
 
-    checkIsPhone(); // Initial check
-    window.addEventListener("resize", checkIsPhone); // Add resize event listener
+    checkIsPhone();
+    window.addEventListener("resize", checkIsPhone);
 
     return () => {
-      window.removeEventListener("resize", checkIsPhone); // Cleanup
+      window.removeEventListener("resize", checkIsPhone);
     };
   }, []);
 
@@ -151,7 +149,6 @@ function Hero() {
     ],
   };
 
-  // Scroll rotate visual star
   useEffect(() => {
     const handleScroll = () => {
       const rotatingStar = document.getElementById("starRotator");
@@ -167,7 +164,6 @@ function Hero() {
     };
   }, []);
 
-  // Animate header and main
   useEffect(() => {
     const animationTimeout = setTimeout(() => {
       setHeaderPosition(0);
@@ -197,16 +193,16 @@ function Hero() {
           <div className="text-center p-5 py-5 w-full">
             <div className="mainHeader header-font pt-4 overflow-hidden">
               <h2
-                className="font-bold py-0 mb-6 md:text-[5vw] text-5xl header-font mx-auto"
+                className={`font-bold py-0 mb-6 header-font mx-auto ${
+                  isPhone ? "text-4xl leading-snug" : "text-[4vw] leading-tight"
+                }`}
                 style={{
                   transition: "transform 0.6s ease-in-out",
-                  transform: `translateY(+${headerPosition}px)`,
+                  transform: `translateY(${headerPosition}px)`,
                 }}
               >
                 Hi. I'm Jonas,{" "}
-                <span style={{ display: "block" }}>
-                  A Full Stack Web & XR Developer
-                </span>
+                <span className="block">A Full Stack Web & XR Developer</span>
               </h2>
             </div>
             <div
@@ -222,7 +218,6 @@ function Hero() {
               </h3>
             </div>
           </div>
-          {/* Star animations */}
           {isPhone
             ? starConfigurations.phone.map((config) => (
                 <AddStar key={config.id} {...config} />
