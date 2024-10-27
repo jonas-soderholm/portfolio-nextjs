@@ -4,11 +4,15 @@ import React from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { useDarkMode } from "./DarkModeContext";
 
 function TimeLine() {
+  const { darkMode } = useDarkMode();
+
   useEffect(() => {
     AOS.init({ duration: 350 });
-  }, []);
+    return () => AOS.refresh();
+  }, [darkMode]);
 
   return (
     <>
@@ -17,7 +21,9 @@ function TimeLine() {
         data-aos="zoom-in"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="500"
-        className="timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-600"
+        className={`${
+          darkMode ? "text-dark" : "text-light"
+        } timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-200`}
       >
         <li>
           <div className="timeline-start ">2019</div>
@@ -35,7 +41,9 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box">Nackademin VR Dev</div>
+          <div className="timeline-end timeline-box text-dark">
+            Nackademin VR Dev
+          </div>
           <hr />
         </li>
         <li>
@@ -55,7 +63,9 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box">Flowtropolis</div>
+          <div className="timeline-end timeline-box text-dark">
+            Flowtropolis
+          </div>
           <hr />
         </li>
         <li>
@@ -75,7 +85,9 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box">Python IT Security</div>
+          <div className="timeline-end timeline-box text-dark">
+            Python IT Security
+          </div>
           <hr />
         </li>
         <li>
@@ -95,7 +107,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box">
+          <div className="timeline-end timeline-box text-dark">
             Chas Academy IT Security for users
           </div>
           <hr />
@@ -117,7 +129,9 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box">InfinityITC</div>
+          <div className="timeline-end timeline-box text-dark">
+            InfinityITC Intern
+          </div>
         </li>
       </ul>
     </>

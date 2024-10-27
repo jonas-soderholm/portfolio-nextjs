@@ -7,8 +7,8 @@ import "aos/dist/aos.css";
 import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
+  { logoSrc: "/react-logo.png", name: "Next/React" },
   { logoSrc: "/typescript.png", name: "TypeScript" },
-  { logoSrc: "/react-logo.png", name: "React/Next" },
   { logoSrc: "/js-logo.png", name: "JavaScript" },
   { logoSrc: "/python.png", name: "Python" },
   { logoSrc: "/django.png", name: "Django" },
@@ -16,8 +16,7 @@ const web_tools = [
   { logoSrc: "/express-logo.png", name: "Express" },
   { logoSrc: "/threejs-logo.png", name: "Three.js" },
   { logoSrc: "/database.png", name: "SQL/NoSQL" },
-  // { logoSrc: "/tailwind-logo.png", name: "Tailwind" },
-  // { logoSrc: "/bootstrap.png", name: "Bootstrap" },
+  { logoSrc: "/wordpress-logo.png", name: "CMS" },
   { logoSrc: "/vs-logo.png", name: "VS Code" },
   { logoSrc: "/linux-logo.png", name: "Linux" },
   { logoSrc: "/windows-logo.png", name: "Windows" },

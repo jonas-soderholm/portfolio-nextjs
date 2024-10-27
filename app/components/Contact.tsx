@@ -10,7 +10,8 @@ function Contact() {
 
   useEffect(() => {
     AOS.init({ duration: 350 });
-  }, []);
+    return () => AOS.refresh();
+  }, [darkMode]);
 
   return (
     <div

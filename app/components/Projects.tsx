@@ -90,7 +90,7 @@ function Projects() {
     return cards.map((properties) => (
       <div
         key={properties.title}
-        className={`shadow-2xl border-opacity-10 m-2 border-2 border-stone-800 rounded-lg overflow-hidden flex flex-col text-slate-200 bg-stone-800 md:w-[20rem] w-[18rem] h-[480px]`} // Fixed height for each card
+        className={`shadow-2xl border-opacity-10 m-2 border-2 border-stone-800 rounded-lg overflow-hidden flex flex-col text-slate-200 bg-stone-800 md:w-[20rem] w-[18rem] h-[480px]`}
       >
         {properties.title === "FastXR" ? ( // Check if the title is "FastXR"
           <iframe
@@ -100,17 +100,17 @@ function Projects() {
             title={properties.title}
             frameBorder="0"
             allow="autoplay"
-            className="object-cover" // Maintain aspect ratio
+            className="object-cover"
           ></iframe>
         ) : (
           <img
             src={properties.image}
             alt={properties.title}
-            className="w-full h-[200px] object-cover" // Fixed height for images
+            className="w-full h-[200px] object-cover"
           />
         )}
         <div className="flex flex-col flex-grow p-3">
-          <h2 className="md:text-lg text-sm font-semibold mb-1">
+          <h2 className="text-xl header-font font-semibold mb-1">
             {properties.title}
           </h2>
           <p

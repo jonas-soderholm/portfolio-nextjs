@@ -186,7 +186,7 @@ function Hero() {
       <div
         className={`${
           darkMode ? "text-dark" : "text-light"
-        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-center overflow-hidden max-w-[80vw] md:max-w-[60vw] mx-auto`}
+        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-center overflow-hidden max-w-full md:max-w-[60vw] mx-auto`}
       >
         <div className="w-full overflow-x-hidden"></div>
         <div className="p-0 flex flex-col items-center gap-4 relative w-full">
@@ -194,7 +194,7 @@ function Hero() {
             <div className="mainHeader header-font pt-4 overflow-hidden">
               <h2
                 className={`font-bold py-0 mb-6 header-font mx-auto ${
-                  isPhone ? "text-4xl mt-[-1rem]" : "text-[4vw] leading-tight"
+                  isPhone ? "text-5xl mt-[-1rem]" : "text-[4vw] leading-tight"
                 }`}
                 style={{
                   transition: "transform 0.6s ease-in-out",
