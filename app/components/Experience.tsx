@@ -66,12 +66,12 @@ function Experience() {
 
   return (
     <div
-      className={`relative flex h-[500px] w-full items-center justify-center overflow-hidden ${
+      className={` relative flex h-[30rem] w-full items-center justify-center overflow-hidden ${
         darkMode ? "text-dark" : "text-light"
-      } p-10`}
+      } p-10 `}
       ref={containerRef}
     >
-      <div className="flex size-full flex-col max-w-lg max-h-[200px] items-stretch justify-between gap-10">
+      <div className=" flex size-full flex-col max-w-lg max-h-[200px] items-stretch justify-between gap-10">
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div1Ref}>
             <Icons.cv />
