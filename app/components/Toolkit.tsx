@@ -9,6 +9,7 @@ import { BorderBeam } from "./ui/border-beam";
 const web_tools = [
   { logoSrc: "/react-logo.png", name: "Next/React" },
   { logoSrc: "/typescript.png", name: "TypeScript" },
+  { logoSrc: "/prisma-logo.png", name: "Prisma" },
   { logoSrc: "/js-logo.png", name: "JavaScript" },
   { logoSrc: "/python.png", name: "Python" },
   { logoSrc: "/django.png", name: "Django" },
