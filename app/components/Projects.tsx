@@ -29,7 +29,7 @@ function Projects() {
       ],
       image: "https://www.youtube.com/embed/BU2-Aq5JT0k",
       url: "https://www.youtube.com/embed/BU2-Aq5JT0k",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm/vr-showroom",
     },
     {
       title: "Saveer",
@@ -43,7 +43,7 @@ function Projects() {
       ],
       image: "/saveer_dark.png",
       url: "https://saveer.jonas-soderholm.dev/",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm/movie-saver",
     },
     {
       title: "3D Showroom",
@@ -51,7 +51,7 @@ function Projects() {
       language: ["Three.js", "React", "React Fiber"],
       image: "/450.png",
       url: "https://project-450.netlify.app/",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm/450exc-project",
     },
     {
       title: "MapTagger",
@@ -66,7 +66,7 @@ function Projects() {
       ],
       image: "/maptagger.png",
       url: "https://maptagger.xyz",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm/map-tagger",
     },
     {
       title: "Folkets reklam",
@@ -74,7 +74,7 @@ function Projects() {
       language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
       image: "/folkets.png",
       url: "https://folketsreklam.jonas-soderholm.dev/",
-      gitsource: "https://github.com/jonas-soderholm.dev/",
+      gitsource: "https://github.com/jonas-soderholm/folkets-reklam",
     },
   ];
 
