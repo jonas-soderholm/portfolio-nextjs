@@ -68,14 +68,14 @@ function Projects() {
       url: "https://maptagger.xyz",
       gitsource: "https://github.com/jonas-soderholm/map-tagger",
     },
-    {
-      title: "Folkets reklam",
-      description: "Donate towards a better society!",
-      language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
-      image: "/folkets.png",
-      url: "https://folketsreklam.jonas-soderholm.dev/",
-      gitsource: "https://github.com/jonas-soderholm/folkets-reklam",
-    },
+    // {
+    //   title: "Folkets reklam",
+    //   description: "Donate towards a better society!",
+    //   language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
+    //   image: "/folkets.png",
+    //   url: "https://folketsreklam.jonas-soderholm.dev/",
+    //   gitsource: "https://github.com/jonas-soderholm/folkets-reklam",
+    // },
   ];
 
   const handleCardClick = (url: string) => {
