@@ -32,6 +32,14 @@ function Projects() {
       gitsource: "https://github.com/jonas-soderholm/vr-showroom",
     },
     {
+      title: "3D Showroom",
+      description: "KTM EXC 450.",
+      language: ["Three.js", "React", "React Fiber"],
+      image: "/450.png",
+      url: "https://project-450.netlify.app/",
+      gitsource: "https://github.com/jonas-soderholm/450exc-project",
+    },
+    {
       title: "Saveer",
       description: "Search for series/movies and save them to your profile",
       language: [
@@ -42,16 +50,8 @@ function Projects() {
         "JWT Token Authentication",
       ],
       image: "/saveer_dark.png",
-      url: "https://saveer.jonas-soderholm.dev/",
+      // url: "https://saveer.jonas-soderholm.dev/",
       gitsource: "https://github.com/jonas-soderholm/movie-saver",
-    },
-    {
-      title: "3D Showroom",
-      description: "KTM EXC 450.",
-      language: ["Three.js", "React", "React Fiber"],
-      image: "/450.png",
-      url: "https://project-450.netlify.app/",
-      gitsource: "https://github.com/jonas-soderholm/450exc-project",
     },
     {
       title: "MapTagger",
@@ -65,17 +65,9 @@ function Projects() {
         "Share tags!",
       ],
       image: "/maptagger.png",
-      url: "https://maptagger.xyz",
+      // url: "https://maptagger.xyz",
       gitsource: "https://github.com/jonas-soderholm/map-tagger",
     },
-    // {
-    //   title: "Folkets reklam",
-    //   description: "Donate towards a better society!",
-    //   language: ["Django", "React", "MongoDB", "CRUD", "Animations"],
-    //   image: "/folkets.png",
-    //   url: "https://folketsreklam.jonas-soderholm.dev/",
-    //   gitsource: "https://github.com/jonas-soderholm/folkets-reklam",
-    // },
   ];
 
   const handleCardClick = (url: string) => {
@@ -130,12 +122,15 @@ function Projects() {
             ))}
           </div>
           <div className="mt-auto flex gap-2 text-[12px]">
-            <button
-              onClick={() => window.open(properties.url, "_blank")}
-              className="flex items-center hover:bg-[#66a430] text-black bg-[#8eff2b] font-bold py-1 px-2 rounded"
-            >
-              <FiExternalLink className="mr-1" /> Website
-            </button>
+            {/* Only render the 'Website' button if `url` is available */}
+            {properties.url && (
+              <button
+                onClick={() => window.open(properties.url, "_blank")}
+                className="flex items-center hover:bg-[#66a430] text-black bg-[#8eff2b] font-bold py-1 px-2 rounded"
+              >
+                <FiExternalLink className="mr-1" /> Website
+              </button>
+            )}
             <button
               onClick={() => window.open(properties.gitsource, "_blank")}
               className="flex items-center text-black bg-[#8eff2b] hover:bg-[#66a430] font-bold px-2 rounded"
