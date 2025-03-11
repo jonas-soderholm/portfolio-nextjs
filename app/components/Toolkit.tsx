@@ -83,14 +83,14 @@ function Toolkit() {
           key={tool.name}
           className="font-bold rounded-xl border px-2 py-1 flex items-center justify-center"
         >
-          <div className="p-1 flex items-center">
+          <div className="p-0 flex items-center">
             <img
               src={tool.logoSrc}
               alt=""
               className="md:w-3 md:h-auto w-3 h-auto"
             />
           </div>
-          <div className="p-1 md:text-sm text-[0.7rem]">{tool.name}</div>
+          <div className="p-1 md:text-xs text-[0.7rem]">{tool.name}</div>
         </div>
       ))}
     </div>
