@@ -41,7 +41,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             Nackademin VR Dev
           </div>
           <hr />
@@ -63,7 +63,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             Flowtropolis
           </div>
           <hr />
@@ -85,7 +85,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             Python IT Security
           </div>
           <hr />
@@ -107,7 +107,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             Chas Academy IT Security for users
           </div>
           <hr />
@@ -129,7 +129,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             InfinityITC Intern
           </div>
           <hr />
@@ -151,7 +151,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark">
+          <div className="timeline-end timeline-box text-dark card-bg">
             Running{" "}
             <a
               href="https://juporia.com"
