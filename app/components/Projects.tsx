@@ -71,7 +71,7 @@ function Projects() {
     return cards.map((properties) => (
       <div
         key={properties.title}
-        className={`shadow-2xl border-opacity-10 m-2 border-2 border-stone-800 rounded-lg overflow-hidden flex flex-col text-slate-200 bg-stone-800 md:w-[20rem] w-[18rem] h-[480px]`}
+        className={`shadow-2xl dot-background border-opacity-10 m-2 border-2 border-stone-800 rounded-lg overflow-hidden flex flex-col text-slate-200 bg-stone-800 md:w-[20rem] w-[18rem] h-[480px]`}
       >
         {properties.title === "FastXR" ? ( // Check if the title is "FastXR"
           <iframe

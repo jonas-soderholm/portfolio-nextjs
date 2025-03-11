@@ -202,3 +202,15 @@ body {
     display: none;
   }
 }
+
+.dot-background {
+  background-color: #292929;
+  background-image: radial-gradient(
+    rgba(65, 65, 65, 0.993) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  background-position: 0px 5px; /* Moves dots 5px down */
+  position: relative;
+  overflow: hidden;
+}
