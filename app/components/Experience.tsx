@@ -278,7 +278,7 @@ const Icons = {
 
   certifications: () => (
     <a
-      href="https://www.linkedin.com/in/jonas-soderholm/"
+      href="https://drive.google.com/drive/folders/1o1aGlvrZ2CrpFbpeawMLM4JpNfpWcyHN?usp=sharing"
       target="_blank"
       rel="noopener noreferrer"
     >

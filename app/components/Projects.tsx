@@ -13,6 +13,24 @@ function Projects() {
 
   const cards = [
     {
+      title: "Juporia",
+      description:
+        "Cybersecurity and privacy awareness training for teams, business owners, and individuals. Buy individual access or buy for team members.",
+      language: [
+        "NextJS",
+        "TypeScript",
+        "SupaBase",
+        "OAuth",
+        "Prisma",
+        "PostgreSQL",
+        "Stripe",
+      ],
+      image: "device-mockup2.png",
+      url: "https://juporia.com",
+      gitsource: "https://juporia.com",
+    },
+
+    {
       title: "FastXR",
       description:
         "Upload 3D models through the web app and access them in the multiuser VR app.",
@@ -38,35 +56,6 @@ function Projects() {
       image: "/450.png",
       url: "https://project-450.netlify.app/",
       gitsource: "https://github.com/jonas-soderholm/450exc-project",
-    },
-    {
-      title: "Saveer",
-      description: "Search for series/movies and save them to your profile",
-      language: [
-        "Django",
-        "Django REST Framework",
-        "React",
-        "MySQL",
-        "JWT Token Authentication",
-      ],
-      image: "/saveer_dark.png",
-      // url: "https://saveer.jonas-soderholm.dev/",
-      gitsource: "https://github.com/jonas-soderholm/movie-saver",
-    },
-    {
-      title: "MapTagger",
-      description: "Share your marks!",
-      language: [
-        "Node",
-        "Express",
-        "React",
-        "MySQL",
-        "Authentication",
-        "Share tags!",
-      ],
-      image: "/maptagger.png",
-      // url: "https://maptagger.xyz",
-      gitsource: "https://github.com/jonas-soderholm/map-tagger",
     },
   ];
 
