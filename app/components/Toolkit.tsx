@@ -7,9 +7,10 @@ import "aos/dist/aos.css";
 import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
-  { logoSrc: "/react-logo.png", name: "Next/React" },
-  { logoSrc: "/typescript.png", name: "TypeScript" },
+  { logoSrc: "/react-logo.png", name: "NextJS/React" },
   { logoSrc: "/js-logo.png", name: "JavaScript" },
+  { logoSrc: "/typescript.png", name: "TypeScript" },
+  { logoSrc: "/nestjs-logo.png", name: "NestJS" },
   { logoSrc: "/lock.png", name: "Secure Authentication" },
   { logoSrc: "/prisma-logo.png", name: "Prisma" },
   { logoSrc: "/python.png", name: "Python" },
@@ -45,8 +46,8 @@ const devops_tools = [
   { logoSrc: "/github-logo.png", name: "Github" },
   { logoSrc: "/gitlab.png", name: "Gitlab" },
   { logoSrc: "/azure.png", name: "Azure" },
-  { logoSrc: "/argocd.png", name: "ArgoCD" },
-  { logoSrc: "/rancher.png", name: "Rancher" },
+  // { logoSrc: "/argocd.png", name: "ArgoCD" },
+  // { logoSrc: "/rancher.png", name: "Rancher" },
   { logoSrc: "/terraform.png", name: "Terraform" },
   { logoSrc: "/prometheus.png", name: "Prometheus" },
   { logoSrc: "/loki.png", name: "Loki" },

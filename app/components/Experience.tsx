@@ -95,9 +95,6 @@ function Experience() {
           <Circle ref={div5Ref}>
             <Icons.linkedin />
           </Circle>
-          {/* <Circle ref={div7Ref}>
-            <Icons.messenger />
-          </Circle> */}
         </div>
       </div>
 

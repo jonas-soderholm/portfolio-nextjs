@@ -29,7 +29,23 @@ function Projects() {
       url: "https://juporia.com",
       gitsource: "https://juporia.com",
     },
-
+    {
+      title: "Email-based authentication",
+      description:
+        "Cybersecurity and privacy awareness training for teams, business owners, and individuals. Buy individual access or buy for team members.",
+      language: [
+        "NestJS",
+        "NextJS",
+        "JWT",
+        "NodeMailer",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL/Neo",
+      ],
+      image: "auth-mail.png",
+      url: "https://auth.jonas-soderholm.dev/login",
+      gitsource: "https://github.com/jonas-soderholm/nest-next-auth",
+    },
     {
       title: "FastXR",
       description:
@@ -56,6 +72,14 @@ function Projects() {
       image: "/450.png",
       url: "https://project-450.netlify.app/",
       gitsource: "https://github.com/jonas-soderholm/450exc-project",
+    },
+    {
+      title: "Embedded Starter Kit",
+      description: "Retro styled Embedded links",
+      language: ["NextJS"],
+      image: "/embedded.png",
+      url: "https://www.embeddedstarterkit.com/",
+      gitsource: "https://github.com/jonas-soderholm/embedded",
     },
   ];
 
@@ -140,7 +164,7 @@ function Projects() {
           darkMode ? "text-dark" : "text-light"
         } project-header flex flex-col items-center text-center md:text-7xl text-4xl mt-36 mb-10`}
       >
-        <div className="font-bold header-font">Projects</div>
+        <div className="font-bold header-font">Solo Projects</div>
         <div className="text-2xl body-text-medium">
           Have a look at my latest work!
         </div>

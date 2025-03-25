@@ -39,5 +39,3 @@ function Contact() {
 }
 
 export default Contact;
-
-// asdKKC
