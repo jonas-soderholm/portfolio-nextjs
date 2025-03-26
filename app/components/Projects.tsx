@@ -175,7 +175,7 @@ function Projects() {
 
       <div
         className="card-container mx-auto mt-8 scrollbar-hide body-text-medium"
-        style={{ maxWidth: "1300px" }}
+        style={{ maxWidth: "1500px" }}
         ref={containerRef}
       >
         <div
