@@ -13,7 +13,7 @@ function Projects() {
 
   const cards = [
     {
-      title: "Juporia",
+      title: "Juporia (SaaS)",
       description:
         "Cybersecurity and privacy awareness training for teams, business owners, and individuals. Buy individual access or buy for team members.",
       language: [
@@ -32,13 +32,13 @@ function Projects() {
     {
       title: "Email-based authentication",
       description:
-        "Cybersecurity and privacy awareness training for teams, business owners, and individuals. Buy individual access or buy for team members.",
+        "Full-stack email-based authentication system with secure JWT tokens, NestJS and Next.js.",
       language: [
         "NestJS",
         "NextJS",
         "Testing",
         "JWT",
-        "Loggin",
+        "Logging",
         "TypeScript",
         "PostgreSQL",
         "Prisma",
@@ -121,7 +121,7 @@ function Projects() {
             {properties.title}
           </h2>
           <p
-            className="md:text-xs flex-grow overflow-hidden"
+            className="md:text-xs text-[15px] flex-grow overflow-hidden"
             style={{ maxHeight: "4.5em" }}
           >
             {properties.description}
