@@ -2,12 +2,9 @@
 
 import { Canvas } from "@react-three/fiber";
 import BubblePlane from "./BubblePlane";
-import ZoomController from "./ZoomController";
-import { useBubbleStore } from "./levaSotre";
+import BubbleControls from "./BubbleControls";
 
 export default function BackgroundCanvas() {
-  useBubbleStore(); // enable Leva controls
-
   return (
     <div
       style={{
@@ -18,8 +15,8 @@ export default function BackgroundCanvas() {
         height: "100vh",
       }}
     >
-      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
-        <ZoomController />
+      <Canvas camera={{ position: [0, 0, 10], fov: 15 }}>
+        <BubbleControls />
         <BubblePlane />
       </Canvas>
     </div>
