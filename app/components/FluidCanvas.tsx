@@ -1,19 +1,11 @@
 "use client";
 import * as THREE from "three";
 import { useRef, useEffect } from "react";
-import { useControls } from "leva";
 import { vertexShader, fluidShader, displayShader } from "../shaders";
+import { config } from "../utils";
 
 export default function FluidCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const { brushSize, brushStrength, fluidDecay, distortionAmount } =
-    useControls("Fluid", {
-      brushSize: { value: 60.0, min: 1, max: 120, step: 1 },
-      brushStrength: { value: 1.2, min: 0.1, max: 5, step: 0.1 },
-      fluidDecay: { value: 0.996, min: 0.9, max: 0.9999, step: 0.0001 },
-      distortionAmount: { value: 0.08, min: 0.0, max: 0.2, step: 0.001 },
-    });
 
   useEffect(() => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -38,15 +30,21 @@ export default function FluidCanvas() {
     let rt1 = getTarget();
     let rt2 = getTarget();
 
+    renderer.setRenderTarget(rt1);
+    renderer.clear();
+    renderer.setRenderTarget(rt2);
+    renderer.clear();
+    renderer.setRenderTarget(null);
+
     const fluidUniforms = {
       iResolution: {
         value: new THREE.Vector2(window.innerWidth, window.innerHeight),
       },
       iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
       iPreviousFrame: { value: rt1.texture },
-      uBrushSize: { value: brushSize },
-      uBrushStrength: { value: brushStrength },
-      uFluidDecay: { value: fluidDecay },
+      uBrushSize: { value: config.brushSize }, // normalized size
+      uBrushStrength: { value: config.brushStrength },
+      uFluidDecay: { value: config.fluidDecay },
     };
 
     const fluidMat = new THREE.ShaderMaterial({
@@ -64,7 +62,7 @@ export default function FluidCanvas() {
         value: new THREE.Vector2(window.innerWidth, window.innerHeight),
       },
       iFluid: { value: rt1.texture },
-      uDistortionAmount: { value: distortionAmount },
+      uDistortionAmount: { value: 0.1 },
     };
 
     const displayMat = new THREE.ShaderMaterial({
@@ -77,51 +75,35 @@ export default function FluidCanvas() {
     displayScene.add(new THREE.Mesh(plane, displayMat));
 
     const mouse = fluidUniforms.iMouse.value;
-    const updateMouse = (e: MouseEvent) => {
-      const x = e.clientX;
-      const y = window.innerHeight - e.clientY;
-      mouse.x = x;
-      mouse.y = y;
-    };
     let lastX = 0,
       lastY = 0;
     window.addEventListener("mousemove", (e) => {
       const x = e.clientX;
       const y = window.innerHeight - e.clientY;
-
-      // velocity magnitude
       const dx = x - lastX;
       const dy = y - lastY;
       const speed = Math.sqrt(dx * dx + dy * dy);
-
       mouse.x = x;
       mouse.y = y;
-      mouse.w = speed; // store velocity for shader
-
+      mouse.w = speed;
       lastX = x;
       lastY = y;
     });
-    window.addEventListener("mousedown", () => (mouse.z = 1.0));
-    window.addEventListener("mouseup", () => (mouse.z = 0.0));
 
     const clock = new THREE.Clock();
 
     const render = () => {
-      fluidUniforms.uBrushSize.value = brushSize;
-      fluidUniforms.uBrushStrength.value = brushStrength;
-      fluidUniforms.uFluidDecay.value = fluidDecay;
-      displayUniforms.uDistortionAmount.value = distortionAmount;
+      fluidUniforms.uBrushSize.value = config.brushSize;
+      fluidUniforms.uBrushStrength.value = config.brushStrength;
+      fluidUniforms.uFluidDecay.value = config.fluidDecay;
       displayUniforms.iTime.value = clock.getElapsedTime();
 
-      // 1. simulate fluid → rt2
       fluidUniforms.iPreviousFrame.value = rt1.texture;
       renderer.setRenderTarget(rt2);
       renderer.render(fluidScene, camera);
 
-      // 2. update display shader
       displayMat.uniforms.iFluid.value = rt2.texture;
 
-      // 3. render to screen
       renderer.setRenderTarget(null);
       renderer.clear();
       renderer.render(displayScene, camera);
@@ -138,7 +120,7 @@ export default function FluidCanvas() {
       rt1.dispose();
       rt2.dispose();
     };
-  }, [brushSize, brushStrength, fluidDecay, distortionAmount]);
+  }, []);
 
   return (
     <div

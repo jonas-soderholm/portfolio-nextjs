@@ -5,6 +5,7 @@ export const vertexShader = `
     gl_Position = vec4(position, 1.0);
   }
 `;
+
 export const fluidShader = `
   uniform vec2 iResolution;
   uniform vec4 iMouse; // .xy = pos, .w = velocity
@@ -15,30 +16,35 @@ export const fluidShader = `
   varying vec2 vUv;
 
   void main() {
-    vec4 prev = texture2D(iPreviousFrame, vUv);
-    float field = prev.r; // store scalar in red channel
+    float field = 0.0;
 
-    // neighbor diffusion (smooths out)
-    vec2 texel = 5.0 / iResolution;
-    float n = texture2D(iPreviousFrame, vUv + vec2(0.0, texel.y)).r;
-    float s = texture2D(iPreviousFrame, vUv - vec2(0.0, texel.y)).r;
-    float e = texture2D(iPreviousFrame, vUv + vec2(texel.x, 0.0)).r;
-    float w = texture2D(iPreviousFrame, vUv - vec2(texel.x, 0.0)).r;
-    float avg = (n + s + e + w) * 0.25;
-    field = mix(field, avg, 0.15);
+    if (iMouse.w > 0.1) {
+      vec4 prev = texture2D(iPreviousFrame, vUv);
+      field = prev.r;
 
-    // mouse adds a smooth circular bump
-    vec2 mouse = iMouse.xy / iResolution;
-    float d = distance(vUv, mouse);
-    float influence = exp(-pow(d * uBrushSize, 10.0));
-    field += influence * uBrushStrength * max(iMouse.w * 0.1, 0.1);
+      // neighbor diffusion
+      vec2 texel = 5.0 / iResolution;
+      float n = texture2D(iPreviousFrame, vUv + vec2(0.0, texel.y)).r;
+      float s = texture2D(iPreviousFrame, vUv - vec2(0.0, texel.y)).r;
+      float e = texture2D(iPreviousFrame, vUv + vec2(texel.x, 0.0)).r;
+      float w = texture2D(iPreviousFrame, vUv - vec2(texel.x, 0.0)).r;
+      float avg = (n + s + e + w) * 0.25;
+      field = mix(field, avg, 0.15);
 
-    // slow decay
-    field *= uFluidDecay;
+      // add ripple — larger uBrushSize = bigger radius
+      vec2 mouse = iMouse.xy / iResolution;
+      float d = distance(vUv, mouse);
+      float influence = exp(-pow(d / uBrushSize, 2.0));
+      float strength = max(iMouse.w * 0.1, 0.1);
 
-    gl_FragColor = vec4(field, 4.0, 4.0, 4.0);
+      field += influence * uBrushStrength * strength;
+      field *= uFluidDecay;
+    }
+
+    gl_FragColor = vec4(field, 0.0, 0.0, 1.0);
   }
 `;
+
 export const displayShader = `
   uniform float iTime;
   uniform vec2 iResolution;
@@ -46,44 +52,68 @@ export const displayShader = `
   uniform float uDistortionAmount;
   varying vec2 vUv;
 
-  vec3 palette(float t) {
-    vec3 a = vec3(0.5, 0.5, 0.5);
-    vec3 b = vec3(0.5, 0.5, 0.5);
-    vec3 c = vec3(1.0, 1.0, 1.0);
-    vec3 d = vec3(0.263, 0.416, 0.557);
-    return a + b * cos(6.28318 * (c * t + d));
-  }
-
-  vec3 baseShader(vec2 fragCoord) {
-    float mr = min(iResolution.x, iResolution.y);
-    vec2 uv = (fragCoord * 2.0 - iResolution.xy) / mr;
-
-    float d = -(iTime * 0.3);
-    float a = 0.0;
-    for (float i = 0.0; i < 8.0; ++i) {
-      a += cos(i - d - a * uv.x);
-      d += sin(uv.y * i + a);
-    }
-    d += (iTime * 0.5);
-    vec3 col = vec3(
-      cos(uv.x * d) * 0.6 + 0.4,
-      cos(uv.y * a) * 0.5 + 0.5,
-      0.5
-    );
-
-    float intensity = (col.r + col.g + col.b) / 3.0;
-    return palette(intensity);
-  }
+  #define TAU 6.28318530718
+  #define MAX_ITER 33
 
   void main() {
-    // sample scalar bump
+    // apply ripple distortion from iFluid
     float bump = texture2D(iFluid, vUv).r;
-
-    // displace UVs radially based on bump
-    vec2 dir = normalize(vUv - 0.1);
+    vec2 dir = normalize(vUv - vec2(0.5));
     vec2 distortedUV = vUv + dir * bump * uDistortionAmount;
 
-    vec3 base = baseShader(distortedUV * iResolution);
-    gl_FragColor = vec4(base, 20.0);
+    // fractal background
+    float time = iTime * 0.1 + 23.0; // slowed down
+    vec2 uv = distortedUV * iResolution;
+
+    vec2 p = mod(uv * TAU / iResolution.y, TAU) - 250.0;
+    vec2 i = p;
+    vec3 c = vec3(0.0);
+    float inten = 0.005;
+
+    for (int n = 0; n < MAX_ITER; n++) {
+      float t = (time + 0.08) * (1.0 - (3.5 / float(n + 1)));
+      i = p + vec2(0.011, 0.021) +
+          vec2(cos(t - i.x) + sin(t + i.y),
+               sin(t - i.y) + cos(t + i.x));
+      c.x += 1.5 / length(vec2(
+        p.x / (sin(i.x + t) / inten),
+        p.y / (cos(i.y + t) / inten)
+      ));
+    }
+
+    i = p;
+    for (int n = 0; n < MAX_ITER; n++) {
+      float t = (time + 0.04) * (1.0 - (3.5 / float(n + 1)));
+      i = p + vec2(cos(t - i.x) + sin(t + i.y),
+                   sin(t - i.y) + cos(t + i.x));
+      c.y += 1.5 / length(vec2(
+        p.x / (sin(i.x + t) / inten),
+        p.y / (cos(i.y + t) / inten)
+      ));
+    }
+
+    i = p;
+    for (int n = 0; n < MAX_ITER; n++) {
+      float t = time * (1.0 - (3.5 / float(n + 1)));
+      i = p + vec2(cos(t - i.x) + sin(t + i.y),
+                   sin(t - i.y) + cos(t + i.x));
+      c.z += 1.5 / length(vec2(
+        p.x / (sin(i.x + t) / inten),
+        p.y / (cos(i.y + t) / inten)
+      ));
+    }
+
+    c /= float(MAX_ITER);
+    c.x = 1.17 - pow(c.x, 1.4);
+    c.y = 1.17 - pow(c.y, 1.4);
+    c.z = 1.17 - pow(c.z, 1.4);
+
+    vec3 colour = vec3(
+      pow(abs(c.x), 8.0),
+      pow(abs(c.y), 8.0),
+      pow(abs(c.z), 8.0)
+    );
+
+    gl_FragColor = vec4(colour * 0.4, 1.0); // darker
   }
 `;

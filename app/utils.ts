@@ -1,7 +1,7 @@
 export const config = {
-  brushSize: 25.0,
-  brushStrength: 0.8,
-  fluidDecay: 0.97,
+  brushSize: 0.05, // in normalized screen units (0.01 small, 0.2 big)
+  brushStrength: 0.5, // intensity of ripple
+  fluidDecay: 0.995, // how long trails last
   color1: "#b8fff7",
   color2: "#6e3466",
   color3: "#0133ff",
