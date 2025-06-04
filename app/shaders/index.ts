@@ -5,10 +5,9 @@ export const vertexShader = `
     gl_Position = vec4(position, 1.0);
   }
 `;
-
 export const fluidShader = `
   uniform vec2 iResolution;
-  uniform vec4 iMouse;
+  uniform vec4 iMouse; // .xy = pos, .w = velocity
   uniform sampler2D iPreviousFrame;
   uniform float uBrushSize;
   uniform float uBrushStrength;
@@ -17,30 +16,36 @@ export const fluidShader = `
 
   void main() {
     vec4 prev = texture2D(iPreviousFrame, vUv);
-    vec4 color = prev;
+    float field = prev.r; // store scalar in red channel
 
-    // Mouse adds energy
-    if (iMouse.z > 0.5) {
-      vec2 mouse = iMouse.xy / iResolution;
-      float d = distance(vUv, mouse);
-      float influence = exp(-d * uBrushSize);
-      color.rgb += vec3(1.0, 0.4, 0.2) * influence * uBrushStrength;
-    }
+    // neighbor diffusion (smooths out)
+    vec2 texel = 1.0 / iResolution;
+    float n = texture2D(iPreviousFrame, vUv + vec2(0.0, texel.y)).r;
+    float s = texture2D(iPreviousFrame, vUv - vec2(0.0, texel.y)).r;
+    float e = texture2D(iPreviousFrame, vUv + vec2(texel.x, 0.0)).r;
+    float w = texture2D(iPreviousFrame, vUv - vec2(texel.x, 0.0)).r;
+    float avg = (n + s + e + w) * 0.25;
+    field = mix(field, avg, 0.4);
 
-    // Fade
-    color *= uFluidDecay;
+    // mouse adds a smooth circular bump
+    vec2 mouse = iMouse.xy / iResolution;
+    float d = distance(vUv, mouse);
+    float influence = exp(-pow(d * uBrushSize, 2.0));
+    field += influence * uBrushStrength * max(iMouse.w * 0.01, 0.5);
 
-    gl_FragColor = color;
+    // slow decay
+    field *= uFluidDecay;
+
+    gl_FragColor = vec4(field, 0.0, 0.0, 1.0);
   }
 `;
-
 export const displayShader = `
   uniform float iTime;
   uniform vec2 iResolution;
-  uniform sampler2D iPreviousFrame;
+  uniform sampler2D iFluid;
+  uniform float uDistortionAmount;
   varying vec2 vUv;
 
-  // your palette
   vec3 palette(float t) {
     vec3 a = vec3(0.5, 0.5, 0.5);
     vec3 b = vec3(0.5, 0.5, 0.5);
@@ -49,7 +54,6 @@ export const displayShader = `
     return a + b * cos(6.28318 * (c * t + d));
   }
 
-  // original shader logic
   vec3 baseShader(vec2 fragCoord) {
     float mr = min(iResolution.x, iResolution.y);
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / mr;
@@ -72,15 +76,14 @@ export const displayShader = `
   }
 
   void main() {
-    // base shader background
-    vec3 base = baseShader(vUv * iResolution);
+    // sample scalar bump
+    float bump = texture2D(iFluid, vUv).r;
 
-    // fluid overlay
-    vec4 fluid = texture2D(iPreviousFrame, vUv);
+    // displace UVs radially based on bump
+    vec2 dir = normalize(vUv - 0.5);
+    vec2 distortedUV = vUv + dir * bump * uDistortionAmount;
 
-    // combine them
-    vec3 finalColor = base + fluid.rgb;
-
-    gl_FragColor = vec4(finalColor, 1.0);
+    vec3 base = baseShader(distortedUV * iResolution);
+    gl_FragColor = vec4(base, 1.0);
   }
 `;
