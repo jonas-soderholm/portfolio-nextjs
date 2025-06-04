@@ -6,13 +6,13 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import TimeLine from "./components/TimeLine";
-import BackgroundCanvas from "./components/BackgroundCanvas";
+import FluidCanvas from "./components/FluidCanvas";
 
 export default function Home() {
   return (
     <>
-      <BackgroundCanvas />
       <DarkModeWrapper>
+        <FluidCanvas />
         <Navbar />
         <Hero />
         <Toolkit />

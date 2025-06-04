@@ -5,7 +5,6 @@ import { useControls } from "leva";
 import { useEffect } from "react";
 import * as THREE from "three";
 
-// Shared refs for the shader
 export const zoomRef = { current: 3.36 };
 export const freqRef = { current: 0.8 };
 export const ampRef = { current: 0.98 };
@@ -13,6 +12,7 @@ export const numBubblesRef = { current: 184 };
 export const rotRef = new THREE.Euler(-1.18, 0, 0);
 export const colorARef = { current: "#346aff" };
 export const colorBRef = { current: "#f04cc2" };
+export const blurRef = { current: 0.003 };
 
 export default function BubbleControls() {
   const camera = useThree((state) => state.camera);
@@ -27,6 +27,12 @@ export default function BubbleControls() {
     rotZ: { value: rotRef.z, min: -Math.PI, max: Math.PI },
     colorA: colorARef.current,
     colorB: colorBRef.current,
+    blurIntensity: {
+      value: blurRef.current,
+      min: 0.0,
+      max: 0.05,
+      step: 0.0001,
+    },
   });
 
   useEffect(() => {
@@ -37,6 +43,7 @@ export default function BubbleControls() {
     rotRef.set(controls.rotX, controls.rotY, controls.rotZ);
     colorARef.current = controls.colorA;
     colorBRef.current = controls.colorB;
+    blurRef.current = controls.blurIntensity;
     camera.position.z = controls.zoom;
   }, [controls, camera]);
 
