@@ -19,24 +19,24 @@ export const fluidShader = `
     float field = prev.r; // store scalar in red channel
 
     // neighbor diffusion (smooths out)
-    vec2 texel = 1.0 / iResolution;
+    vec2 texel = 5.0 / iResolution;
     float n = texture2D(iPreviousFrame, vUv + vec2(0.0, texel.y)).r;
     float s = texture2D(iPreviousFrame, vUv - vec2(0.0, texel.y)).r;
     float e = texture2D(iPreviousFrame, vUv + vec2(texel.x, 0.0)).r;
     float w = texture2D(iPreviousFrame, vUv - vec2(texel.x, 0.0)).r;
     float avg = (n + s + e + w) * 0.25;
-    field = mix(field, avg, 0.4);
+    field = mix(field, avg, 0.15);
 
     // mouse adds a smooth circular bump
     vec2 mouse = iMouse.xy / iResolution;
     float d = distance(vUv, mouse);
-    float influence = exp(-pow(d * uBrushSize, 2.0));
-    field += influence * uBrushStrength * max(iMouse.w * 0.01, 0.5);
+    float influence = exp(-pow(d * uBrushSize, 10.0));
+    field += influence * uBrushStrength * max(iMouse.w * 0.1, 0.1);
 
     // slow decay
     field *= uFluidDecay;
 
-    gl_FragColor = vec4(field, 0.0, 0.0, 1.0);
+    gl_FragColor = vec4(field, 4.0, 4.0, 4.0);
   }
 `;
 export const displayShader = `
@@ -64,7 +64,7 @@ export const displayShader = `
       a += cos(i - d - a * uv.x);
       d += sin(uv.y * i + a);
     }
-    d += (iTime * 0.3);
+    d += (iTime * 0.5);
     vec3 col = vec3(
       cos(uv.x * d) * 0.6 + 0.4,
       cos(uv.y * a) * 0.5 + 0.5,
@@ -80,10 +80,10 @@ export const displayShader = `
     float bump = texture2D(iFluid, vUv).r;
 
     // displace UVs radially based on bump
-    vec2 dir = normalize(vUv - 0.5);
+    vec2 dir = normalize(vUv - 0.1);
     vec2 distortedUV = vUv + dir * bump * uDistortionAmount;
 
     vec3 base = baseShader(distortedUV * iResolution);
-    gl_FragColor = vec4(base, 1.0);
+    gl_FragColor = vec4(base, 20.0);
   }
 `;
