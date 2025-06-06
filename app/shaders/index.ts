@@ -46,74 +46,20 @@ export const fluidShader = `
 `;
 
 export const displayShader = `
-  uniform float iTime;
-  uniform vec2 iResolution;
-  uniform sampler2D iFluid;
+  uniform sampler2D uDisplacement;
+  uniform sampler2D uTexture;
   uniform float uDistortionAmount;
   varying vec2 vUv;
 
-  #define TAU 6.28318530718
-  #define MAX_ITER 33
+  const float PI = 3.141592653589793;
 
   void main() {
-    // apply ripple distortion from iFluid
-    float bump = texture2D(iFluid, vUv).r;
-    vec2 dir = normalize(vUv - vec2(0.5));
-    vec2 distortedUV = vUv + dir * bump * uDistortionAmount;
+    vec4 displacement = texture2D(uDisplacement, vUv);
+    float theta = displacement.r * 2.0 * PI;
+    vec2 dir = vec2(sin(theta), cos(theta));
+    vec2 uv = vUv + dir * displacement.r * uDistortionAmount;
 
-    // fractal background
-    float time = iTime * 0.1 + 23.0; // slowed down
-    vec2 uv = distortedUV * iResolution;
-
-    vec2 p = mod(uv * TAU / iResolution.y, TAU) - 250.0;
-    vec2 i = p;
-    vec3 c = vec3(0.0);
-    float inten = 0.005;
-
-    for (int n = 0; n < MAX_ITER; n++) {
-      float t = (time + 0.08) * (1.0 - (3.5 / float(n + 1)));
-      i = p + vec2(0.011, 0.021) +
-          vec2(cos(t - i.x) + sin(t + i.y),
-               sin(t - i.y) + cos(t + i.x));
-      c.x += 1.5 / length(vec2(
-        p.x / (sin(i.x + t) / inten),
-        p.y / (cos(i.y + t) / inten)
-      ));
-    }
-
-    i = p;
-    for (int n = 0; n < MAX_ITER; n++) {
-      float t = (time + 0.04) * (1.0 - (3.5 / float(n + 1)));
-      i = p + vec2(cos(t - i.x) + sin(t + i.y),
-                   sin(t - i.y) + cos(t + i.x));
-      c.y += 1.5 / length(vec2(
-        p.x / (sin(i.x + t) / inten),
-        p.y / (cos(i.y + t) / inten)
-      ));
-    }
-
-    i = p;
-    for (int n = 0; n < MAX_ITER; n++) {
-      float t = time * (1.0 - (3.5 / float(n + 1)));
-      i = p + vec2(cos(t - i.x) + sin(t + i.y),
-                   sin(t - i.y) + cos(t + i.x));
-      c.z += 1.5 / length(vec2(
-        p.x / (sin(i.x + t) / inten),
-        p.y / (cos(i.y + t) / inten)
-      ));
-    }
-
-    c /= float(MAX_ITER);
-    c.x = 1.17 - pow(c.x, 1.4);
-    c.y = 1.17 - pow(c.y, 1.4);
-    c.z = 1.17 - pow(c.z, 1.4);
-
-    vec3 colour = vec3(
-      pow(abs(c.x), 8.0),
-      pow(abs(c.y), 8.0),
-      pow(abs(c.z), 8.0)
-    );
-
-    gl_FragColor = vec4(colour * 0.4, 1.0); // darker
+    vec4 color = texture2D(uTexture, uv);
+    gl_FragColor = color;
   }
 `;
