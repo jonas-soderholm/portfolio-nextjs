@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Create the context
 const DarkModeContext = createContext({
-  darkMode: true,
+  darkMode: false,
   toggleDarkMode: () => {},
 });
 
@@ -11,7 +11,7 @@ export const useDarkMode = () => useContext(DarkModeContext);
 
 // The provider component that wraps your app or component tree
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);

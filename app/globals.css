@@ -17,8 +17,8 @@ body {
 @layer base {
   :root {
     /* --background: 0 0% 100%; */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 3.9%;
+    /* --background: 0 0% 0%; */
+    /* --foreground: 0 0% 3.9%; */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -45,8 +45,8 @@ body {
   }
   .dark {
     /* --background: 0 0% 3.9%; */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    /* --background: 0 0% 0%; */
+    /* --foreground: 0 0% 98%; */
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
@@ -105,23 +105,25 @@ body {
 
 /* Dark and light mode */
 .text-dark {
-  color: #cccccc;
+  color: #bababa;
 }
 
 .text-light {
-  color: #0f172a;
+  /* color: #0f172a; */
+  color: #e7e6e6;
 }
 
 .bg-light {
-  background-color: #cccccc;
+  /* background-color: #cccccc; */
 }
 
 .bg-dark {
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .nav-bar-light {
-  background-color: rgba(30, 32, 33, 0.306);
+  /* background-color: rgba(30, 32, 33, 0.306); */
+  background-color: rgba(220, 224, 227, 0.284);
 }
 
 .nav-bar-dark {

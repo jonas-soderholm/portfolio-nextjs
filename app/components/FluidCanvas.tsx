@@ -2,9 +2,17 @@
 
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
+import { useDarkMode } from "./DarkModeContext";
 
 export default function FluidCanvas() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { darkMode } = useDarkMode();
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    containerRef.current.style.transition = "opacity 250ms ease";
+    containerRef.current.style.opacity = darkMode ? "0.6" : "1";
+  }, [darkMode]);
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -32,6 +40,8 @@ export default function FluidCanvas() {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       format: THREE.RGBAFormat,
+      depthBuffer: false,
+      stencilBuffer: false,
     });
 
     const geometry = new THREE.PlaneGeometry(150, 150);
@@ -41,14 +51,17 @@ export default function FluidCanvas() {
       "/shader_effect_circle.png"
     );
 
-    const meshes = [];
-    const MAX = 50;
+    const meshes: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>[] =
+      [];
+    const MAX = 100;
 
     for (let i = 0; i < MAX; i++) {
       const mat = new THREE.MeshBasicMaterial({
         map: rippleTexture,
         transparent: true,
         opacity: 0.0,
+        depthTest: false,
+        depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, mat);
       mesh.visible = false;
@@ -64,7 +77,6 @@ export default function FluidCanvas() {
       mouse.y = height / 2 - e.clientY;
 
       const mesh = meshes[current];
-
       mesh.position.set(mouse.x, mouse.y, 0);
       mesh.visible = true;
       mesh.material.opacity = 0.5;
@@ -73,17 +85,51 @@ export default function FluidCanvas() {
       current = (current + 1) % MAX;
     });
 
+    // ---------- VIDEO: reliable autoplay + fallbacks ----------
     const video = document.createElement("video");
-    video.src = "/gradient_background_video.mp4";
-    video.loop = true;
+    // set attributes BEFORE src for some browsers
     video.muted = true;
     video.autoplay = true;
-    video.play();
+    video.loop = true;
+    video.playsInline = true; // iOS
+    video.preload = "auto";
+    video.src = "/gradient_background_video.mp4"; // must be in /public
+
+    // try to play when able
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // will try again on user interaction
+      });
+    };
+
+    // once enough data → attempt play
+    const onCanPlay = () => {
+      tryPlay();
+      video.removeEventListener("canplay", onCanPlay);
+    };
+    video.addEventListener("canplay", onCanPlay);
+
+    // user-gesture fallback (Mobile/Safari/strict policies)
+    const resume = () => {
+      tryPlay();
+      window.removeEventListener("pointerdown", resume);
+      window.removeEventListener("keydown", resume);
+    };
+    window.addEventListener("pointerdown", resume, { once: true });
+    window.addEventListener("keydown", resume, { once: true });
+
+    // helpful error log (optional)
+    video.onerror = () => {
+      // eslint-disable-next-line no-console
+      console.warn("Video error:", video.error);
+    };
 
     const videoTexture = new THREE.VideoTexture(video);
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBAFormat;
+    // color fidelity
+    (videoTexture as any).colorSpace = THREE.SRGBColorSpace;
 
     const vertexShader = `
       varying vec2 vUv;
@@ -101,7 +147,7 @@ export default function FluidCanvas() {
       const float PI = 3.141592653589793;
       void main() {
         vec4 displacement = texture2D(uDisplacement, vUv);
-        float theta = displacement.r * 2.0 * PI;
+        float theta = displacement.r * 0.5 * PI;
         vec2 dir = vec2(sin(theta), cos(theta));
         vec2 uv = vUv + dir * displacement.r * uDistortionAmount;
         vec4 color = texture2D(uTexture, uv);
@@ -117,6 +163,8 @@ export default function FluidCanvas() {
         uTexture: { value: videoTexture },
         uDistortionAmount: { value: 0.25 },
       },
+      depthTest: false,
+      depthWrite: false,
     });
 
     const displayMesh = new THREE.Mesh(quadGeometry, displayMaterial);
@@ -125,23 +173,26 @@ export default function FluidCanvas() {
     const clock = new THREE.Clock();
 
     function animate() {
-      const dt = clock.getDelta();
+      clock.getDelta();
 
       // Update ripple meshes
-      meshes.forEach((mesh) => {
-        if (mesh.visible) {
-          mesh.material.opacity *= 0.94;
-          mesh.scale.x *= 1.03;
-          mesh.scale.y = mesh.scale.x;
-          if (mesh.material.opacity < 0.01) mesh.visible = false;
-        }
-      });
+      for (let i = 0; i < MAX; i++) {
+        const mesh = meshes[i];
+        if (!mesh.visible) continue;
+        mesh.material.opacity *= 0.94;
+        mesh.scale.x *= 1.03;
+        mesh.scale.y = mesh.scale.x;
+        if (mesh.material.opacity < 0.01) mesh.visible = false;
+      }
 
+      // write ripples into displacement target
       renderer.setRenderTarget(rt1);
-      renderer.clear();
+      renderer.setClearColor(0x000000, 0); // transparent RT
+      renderer.clear(true, true, true);
       renderer.render(baseScene, camera);
-      renderer.setRenderTarget(null);
 
+      // final pass
+      renderer.setRenderTarget(null);
       renderer.render(displayScene, camera);
 
       requestAnimationFrame(animate);
@@ -153,6 +204,12 @@ export default function FluidCanvas() {
       video.pause();
       renderer.dispose();
       rt1.dispose();
+      quadGeometry.dispose();
+      geometry.dispose();
+      displayMaterial.dispose();
+      meshes.forEach((m) => m.geometry.dispose());
+      window.removeEventListener("pointerdown", resume);
+      window.removeEventListener("keydown", resume);
     };
   }, []);
 
