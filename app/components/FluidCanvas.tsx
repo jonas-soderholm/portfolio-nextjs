@@ -72,15 +72,27 @@ export default function FluidCanvas() {
     let current = 0;
     const mouse = new THREE.Vector2();
 
+    let prevMouse = new THREE.Vector2();
+    const speedThreshold = 3; // higher = must move faster
+
     window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX - width / 2;
-      mouse.y = height / 2 - e.clientY;
+      const newX = e.clientX - width / 2;
+      const newY = height / 2 - e.clientY;
+
+      // distance moved since last frame
+      const dx = newX - prevMouse.x;
+      const dy = newY - prevMouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      prevMouse.set(newX, newY);
+
+      if (dist < speedThreshold) return; // skip if not moving fast enough
 
       const mesh = meshes[current];
-      mesh.position.set(mouse.x, mouse.y, 0);
+      mesh.position.set(newX, newY, 0);
       mesh.visible = true;
       mesh.material.opacity = 0.5;
-      mesh.scale.set(1.5, 1.5, 1);
+      mesh.scale.set(1.2, 1.2, 1);
       mesh.rotation.z = Math.random() * Math.PI * 2;
       current = (current + 1) % MAX;
     });
@@ -179,7 +191,7 @@ export default function FluidCanvas() {
       for (let i = 0; i < MAX; i++) {
         const mesh = meshes[i];
         if (!mesh.visible) continue;
-        mesh.material.opacity *= 0.94;
+        mesh.material.opacity *= 0.945;
         mesh.scale.x *= 1.03;
         mesh.scale.y = mesh.scale.x;
         if (mesh.material.opacity < 0.01) mesh.visible = false;
