@@ -213,8 +213,8 @@ function Hero() {
               }}
             >
               <h3 className="font-Heebo font-bold text-lg py-0 md:text-2xl max-w-[50rem] mx-auto body-text-medium">
-                I code solutions for smooth, secure, and easy-to-use
-                applications and ensure efficient deployments using CI/CD.
+                I build smooth, secure, and user-friendly applications with an
+                eye for design, ensuring efficient CI/CD deployments.
               </h3>
             </div>
           </div>

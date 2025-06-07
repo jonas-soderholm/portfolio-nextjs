@@ -114,6 +114,6 @@ export const displayShader = `
       pow(abs(c.z), 8.0)
     );
 
-    gl_FragColor = vec4(colour * 0.4, 1.0); // darker
+    gl_FragColor = vec4(colour * 0.99, 1.0); // darker
   }
 `;
