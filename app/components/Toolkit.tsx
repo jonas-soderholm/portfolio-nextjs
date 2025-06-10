@@ -66,7 +66,7 @@ function Toolkit() {
     title: string
   ) => (
     <div
-      className="font-bold dot-background bg-stone-800 text-gray-200 p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
+      className="font-bold bg-slate-200 text-gray-200 p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
        justify-center rounded-xl shadow-2xl relative md:mb-0 mb-[5rem]"
       data-aos="fade-up"
     >
@@ -82,7 +82,7 @@ function Toolkit() {
       {tools.map((tool, index) => (
         <div
           key={tool.name}
-          className="font-bold rounded-xl border px-2 py-1 flex items-center justify-center"
+          className="font-bold text-blackish rounded-xl border-slate-500 border px-2 py-1 flex items-center justify-center"
         >
           <div className="p-0 flex items-center">
             <img

@@ -10,9 +10,9 @@ export function InfoSkeleton({
   gitsource?: string;
 }) {
   return (
-    <div className="info-skeleton flex flex-col lg:flex-row gap-4 w-screen px-4">
+    <div className="info-skeleton flex flex-col lg:flex-row gap-2 w-screen px-4">
       {/* Sidebar */}
-      <div className="hidden lg:flex flex-col gap-4 w-[25rem] shrink-0">
+      <div className="hidden lg:flex flex-col gap-4 w-[25rem] shrink-0 sticky top-2 self-start">
         {/* Built with logos */}
         <div className="flex flex-wrap gap-2 bg-slate-200 text-black text-lg py-3 px-4 rounded-2xl">
           <div className="w-full font-semibold mb-2">Built with:</div>

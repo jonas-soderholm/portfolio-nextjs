@@ -14,7 +14,7 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex items-center justify-center size-[5rem] border-[#4f4f4f] rounded-xl border-2  card-bg",
+        "z-10 flex items-center justify-center size-[5rem] border-none rounded-full border-2 bg-slate-200",
         className?.includes("fill") ? "p-0" : "p-3",
         className
       )}
@@ -167,20 +167,19 @@ const Icons = {
 
   profilePicture: () => (
     <span
-      className="header-font"
+      className="header-font text-blackish"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         width: "100px",
         height: "100px",
-        color: "white",
         borderRadius: "10px",
         fontSize: "15px",
         fontWeight: "bold",
       }}
     >
-      Jonas
+      ME
     </span>
   ),
   cv: () => (
@@ -188,14 +187,14 @@ const Icons = {
       href="https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing"
       target="_blank" // Opens the link in a new tab
       rel="noopener noreferrer" // Security measure
-      className="header-font mt-2"
+      className="text-blackish mt-1"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         width: "100px",
         height: "100px",
-        color: "white",
+        color: "black",
         borderRadius: "10px",
         fontSize: "35px",
         textDecoration: "none", // Removes underline from the link

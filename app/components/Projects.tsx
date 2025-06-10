@@ -34,7 +34,6 @@ function Projects() {
       builtWith: [
         { logoSrc: "/nestjs-logo.png", name: "NestJS" },
         { logoSrc: "/nextjs-logo.png", name: "NextJS" },
-        { logoSrc: "/testing.png", name: "Testing" },
         { logoSrc: "/lock.png", name: "JWT" },
         { logoSrc: "/typescript.png", name: "TypeScript" },
         { logoSrc: "/prisma-logo.png", name: "Prisma" },
@@ -118,7 +117,7 @@ function Projects() {
               <img
                 src={properties.image}
                 alt={properties.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
               />
             </>
           )}

@@ -22,11 +22,11 @@ function TimeLine() {
         data-aos-easing="ease-out-cubic"
         data-aos-duration="500"
         className={`${
-          darkMode ? "text-dark" : "text-light"
+          darkMode ? "text-blackish" : "text-blackish"
         } timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-200`}
       >
         <li>
-          <div className="timeline-start ">2019</div>
+          <div className="timeline-start text-slate ">2019</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Nackademin VR Dev
           </div>
           <hr />
@@ -63,7 +63,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Flowtropolis
           </div>
           <hr />
@@ -85,7 +85,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Python IT Security
           </div>
           <hr />
@@ -107,7 +107,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Chas Academy IT Security for users
           </div>
           <hr />
@@ -129,7 +129,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             InfinityITC Intern
           </div>
           <hr />
@@ -151,7 +151,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box text-dark card-bg">
+          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Running{" "}
             <a
               href="https://juporia.com"

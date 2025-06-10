@@ -11,7 +11,7 @@ function Navbar() {
   function DarkModeButton() {
     return (
       <button
-        className="darkmode-icon mx-1 hover:text-slate-500 flex items-center px-3 text-xl "
+        className="darkmode-icon mx-1 flex items-center px-3 text-xl "
         onClick={toggleDarkMode}
       >
         {darkMode ? <BsSunFill /> : <BsFillMoonStarsFill />}
@@ -37,7 +37,7 @@ function Navbar() {
     return (
       <button
         onClick={() => GoToSection(sectionId)}
-        className={`rounded-full py-2 md:hover:bg-slate-600`}
+        className={`rounded-full py-2 hover:underline transition-colors duration-300`}
       >
         <a className=" mx-2">{children}</a>
       </button>
@@ -55,7 +55,7 @@ function Navbar() {
     <>
       <div
         className={`${
-          darkMode ? "text-dark" : "text-light"
+          darkMode ? "text-dark" : "text-dark"
         } navbar-containe sticky flex justify-center items-center 
         z-20 transition-top ease-in-out duration-300 body-text-medium pointer-events-none`}
         style={{
@@ -73,14 +73,14 @@ function Navbar() {
               rel="noopener noreferrer"
             ></a>
             <li
-              className={`${
-                darkMode ? "nav-bar-dark" : "nav-bar-light"
-              } rounded-full md:px-5 px-3 py-2 
-              md:text-[1rem] text-[3.5vw] backdrop-blur-lg mt-5 overflow-hidden`}
+              className={`${darkMode ? "bg-black/40" : "bg-black/40"} 
+              rounded-full md:px-5 px-3 py-2 
+                md:text-[1rem] text-[3.5vw] 
+                backdrop-blur-md mt-5 overflow-hidden`}
             >
               <div className="flex gap-0 items-center ">
-                <ClassicNavLinks sectionId="toolkit">Toolkit</ClassicNavLinks>
                 <ClassicNavLinks sectionId="projects">Projects</ClassicNavLinks>
+                <ClassicNavLinks sectionId="toolkit">Toolkit</ClassicNavLinks>
                 <div className="darkmode-normal">
                   <DarkModeButton />
                 </div>
