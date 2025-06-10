@@ -8,10 +8,13 @@ import Contact from "./components/Contact";
 import TimeLine from "./components/TimeLine";
 import FluidCanvas from "./components/FluidCanvas";
 
+import CanvasWrapper from "./components/CanvasWrapper";
+
 export default function Home() {
   return (
     <>
-      <DarkModeWrapper>
+      <CanvasWrapper />
+      {/* <DarkModeWrapper>
         <FluidCanvas />
         <Navbar />
         <Hero />
@@ -20,7 +23,7 @@ export default function Home() {
         <TimeLine />
         <Experience />
         <Contact />
-      </DarkModeWrapper>
+      </DarkModeWrapper> */}
     </>
   );
 }
