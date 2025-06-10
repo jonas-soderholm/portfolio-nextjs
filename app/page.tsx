@@ -15,8 +15,8 @@ export default function Home() {
         <FluidCanvas />
         <Navbar />
         <Hero />
-        <Toolkit />
         <Projects />
+        <Toolkit />
         <TimeLine />
         <Experience />
         <Contact />

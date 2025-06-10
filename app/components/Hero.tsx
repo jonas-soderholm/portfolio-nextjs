@@ -177,7 +177,7 @@ function Hero() {
 
   return (
     <div
-      className="main-container pointer flex justify-center items-center"
+      className="main-container pointer flex justify-center items-center mb-20"
       style={{
         transition: "transform 0.3s ease-in-out",
         transform: `translateY(-${0}px)`,

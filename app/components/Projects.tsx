@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaGithub } from "react-icons/fa"; // Import FontAwesome GitHub icon
 import { FiExternalLink } from "react-icons/fi";
+import { InfoSkeleton } from "./InfoSkeleton";
 
 function Projects() {
   const containerRef = useRef(null);
@@ -159,7 +160,7 @@ function Projects() {
   }
 
   return (
-    <>
+    <InfoSkeleton>
       <div id="projects"></div>
       <div
         className={`toolkit-header ${
@@ -185,7 +186,7 @@ function Projects() {
           <RenderCards />
         </div>
       </div>
-    </>
+    </InfoSkeleton>
   );
 }
 export default Projects;
