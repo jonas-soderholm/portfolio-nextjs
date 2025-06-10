@@ -20,7 +20,7 @@ const web_tools = [
   { logoSrc: "/threejs-logo.png", name: "Three.js" },
   { logoSrc: "/database.png", name: "SQL/NoSQL" },
   { logoSrc: "/wordpress-logo.png", name: "CMS" },
-  { logoSrc: "/ai-logo.png", name: "Copilot/ChatGPT4o" },
+  // { logoSrc: "/ai-logo.png", name: "Copilot/ChatGPT4o" },
   { logoSrc: "/vs-logo.png", name: "VS Code" },
   { logoSrc: "/linux-logo.png", name: "Linux" },
   { logoSrc: "/windows-logo.png", name: "Windows" },

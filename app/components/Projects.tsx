@@ -23,7 +23,7 @@ function Projects() {
         { logoSrc: "/prisma-logo.png", name: "Prisma" },
         { logoSrc: "/stripe-logo.png", name: "Stripe" },
       ],
-      image: "device-mockup2.png",
+      image: "juporia-frontpage.png",
       url: "https://juporia.com",
       gitsource: "https://github.com/jonas-soderholm/juporia",
     },
@@ -57,8 +57,7 @@ function Projects() {
         { logoSrc: "/csharp-logo.png", name: "C#" },
         { logoSrc: "/js-logo.png", name: "JS" },
       ],
-      image: "https://www.youtube.com/embed/BU2-Aq5JT0k",
-      url: "https://www.youtube.com/embed/BU2-Aq5JT0k",
+      image: "/fastxr.mp4",
       gitsource: "https://github.com/jonas-soderholm/vr-showroom",
     },
     {
@@ -69,12 +68,20 @@ function Projects() {
         { logoSrc: "/react-logo.png", name: "React" },
         { logoSrc: "/react-logo.png", name: "React Fiber" },
       ],
-      image: "/450.png",
+      image: "/ktm450.mp4",
       url: "https://project-450.netlify.app/",
       gitsource: "https://github.com/jonas-soderholm/450exc-project",
     },
+    // {
+    //   title: "Embedded Starter Kit",
+    //   description: "Retro styled Embedded links",
+    //   builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
+    //   image: "/embedded.png",
+    //   url: "https://www.embeddedstarterkit.com/",
+    //   gitsource: "https://github.com/jonas-soderholm/embedded",
+    // },
     {
-      title: "Embedded Starter Kit",
+      title: "Shader Intreaction",
       description: "Retro styled Embedded links",
       builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
       image: "/embedded.png",
@@ -96,22 +103,30 @@ function Projects() {
         gitsource={properties.gitsource}
       >
         <div className="rounded-lg overflow-hidden flex flex-col w-full">
-          {properties.title === "FastXR" ? (
-            <iframe
-              width="100%"
-              height="800px"
-              src="https://www.youtube.com/embed/BU2-Aq5JT0k?autoplay=1&loop=1&playlist=BU2-Aq5JT0k&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&mute=1"
-              title={properties.title}
-              frameBorder="0"
-              allow="autoplay"
-              className="object-cover"
-            ></iframe>
-          ) : (
+          {properties.title === "3D Showroom" ||
+          properties.title === "FastXR" ? (
             <>
-              <div className="text-[8rem] header-font text-blackish">
+              <div className="text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
                 {properties.title}
               </div>
-              <div className="text-[3rem] text-blackish">
+              <div className="text-[2.5rem] text-blackish leading-tight mb-8">
+                {properties.description}
+              </div>
+              <video
+                src={properties.image}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </>
+          ) : (
+            <>
+              <div className="text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
+                {properties.title}
+              </div>
+              <div className="text-[2.5rem] text-blackish leading-tight mb-8">
                 {properties.description}
               </div>
               <img

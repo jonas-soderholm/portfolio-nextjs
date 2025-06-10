@@ -105,7 +105,8 @@ export default function FluidCanvas() {
     video.loop = true;
     video.playsInline = true; // iOS
     video.preload = "auto";
-    video.src = "/gradient_background_video.mp4"; // must be in /public
+    // video.src = "/gradient_background_video.mp4";
+    video.src = "/gradient.mp4";
 
     // try to play when able
     const tryPlay = () => {
