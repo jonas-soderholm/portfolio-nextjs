@@ -29,8 +29,12 @@ function Projects() {
     },
     {
       title: "Liquid Glass Noise Interactor",
-      description: "Retro styled Embedded links",
-      builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
+      description: "Fluid interaction built on top of Three.js and React.",
+      builtWith: [
+        { logoSrc: "/nextjs-logo.png", name: "NextJS" },
+        { logoSrc: "/threejs-logo.png", name: "Three.js" },
+        { logoSrc: "/react-logo.png", name: "React Fiber" },
+      ],
       image: "/liquidshader.mp4",
       url: "https://www.embeddedstarterkit.com/",
       gitsource: "https://github.com/jonas-soderholm/embedded",
@@ -52,7 +56,8 @@ function Projects() {
     },
     {
       title: "3D Showroom",
-      description: "KTM EXC 450.",
+      description:
+        "Interactive 3D KTM EXC 450 model with rotation, and clickable hotspots for part details.",
       builtWith: [
         { logoSrc: "/threejs-logo.png", name: "Three.js" },
         { logoSrc: "/react-logo.png", name: "React" },
@@ -107,10 +112,10 @@ function Projects() {
           properties.title === "FastXR" ||
           properties.title === "Liquid Glass Noise Interactor" ? (
             <>
-              <div className="text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
+              <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
                 {properties.title}
               </div>
-              <div className="text-[2.5rem] text-blackish leading-tight mb-8">
+              <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
                 {properties.description}
               </div>
               <video
@@ -124,10 +129,10 @@ function Projects() {
             </>
           ) : (
             <>
-              <div className="text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
+              <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
                 {properties.title}
               </div>
-              <div className="text-[2.5rem] text-blackish leading-tight mb-8">
+              <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
                 {properties.description}
               </div>
               <img
