@@ -28,6 +28,14 @@ function Projects() {
       gitsource: "https://github.com/jonas-soderholm/juporia",
     },
     {
+      title: "Liquid Glass Noise Interactor",
+      description: "Retro styled Embedded links",
+      builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
+      image: "/liquidshader.mp4",
+      url: "https://www.embeddedstarterkit.com/",
+      gitsource: "https://github.com/jonas-soderholm/embedded",
+    },
+    {
       title: "Email-based authentication",
       description:
         "Full-stack email-based authentication system with secure JWT tokens, NestJS and Next.js.",
@@ -41,6 +49,18 @@ function Projects() {
       image: "auth-mail.png",
       url: "https://auth.jonas-soderholm.dev/login",
       gitsource: "https://github.com/jonas-soderholm/nest-next-auth",
+    },
+    {
+      title: "3D Showroom",
+      description: "KTM EXC 450.",
+      builtWith: [
+        { logoSrc: "/threejs-logo.png", name: "Three.js" },
+        { logoSrc: "/react-logo.png", name: "React" },
+        { logoSrc: "/react-logo.png", name: "React Fiber" },
+      ],
+      image: "/ktm450.mp4",
+      url: "https://project-450.netlify.app/",
+      gitsource: "https://github.com/jonas-soderholm/450exc-project",
     },
     {
       title: "FastXR",
@@ -60,35 +80,15 @@ function Projects() {
       image: "/fastxr.mp4",
       gitsource: "https://github.com/jonas-soderholm/vr-showroom",
     },
-    {
-      title: "3D Showroom",
-      description: "KTM EXC 450.",
-      builtWith: [
-        { logoSrc: "/threejs-logo.png", name: "Three.js" },
-        { logoSrc: "/react-logo.png", name: "React" },
-        { logoSrc: "/react-logo.png", name: "React Fiber" },
-      ],
-      image: "/ktm450.mp4",
-      url: "https://project-450.netlify.app/",
-      gitsource: "https://github.com/jonas-soderholm/450exc-project",
-    },
-    // {
-    //   title: "Embedded Starter Kit",
-    //   description: "Retro styled Embedded links",
-    //   builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
-    //   image: "/embedded.png",
-    //   url: "https://www.embeddedstarterkit.com/",
-    //   gitsource: "https://github.com/jonas-soderholm/embedded",
-    // },
-    {
-      title: "Shader Intreaction",
-      description: "Retro styled Embedded links",
-      builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
-      image: "/embedded.png",
-      url: "https://www.embeddedstarterkit.com/",
-      gitsource: "https://github.com/jonas-soderholm/embedded",
-    },
   ];
+  // {
+  //   title: "Embedded Starter Kit",
+  //   description: "Retro styled Embedded links",
+  //   builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
+  //   image: "/embedded.png",
+  //   url: "https://www.embeddedstarterkit.com/",
+  //   gitsource: "https://github.com/jonas-soderholm/embedded",
+  // },
 
   useEffect(() => {
     AOS.init({ duration: 200 });
@@ -104,7 +104,8 @@ function Projects() {
       >
         <div className="rounded-lg overflow-hidden flex flex-col w-full">
           {properties.title === "3D Showroom" ||
-          properties.title === "FastXR" ? (
+          properties.title === "FastXR" ||
+          properties.title === "Liquid Glass Noise Interactor" ? (
             <>
               <div className="text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
                 {properties.title}
