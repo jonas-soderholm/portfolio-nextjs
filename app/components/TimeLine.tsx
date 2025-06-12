@@ -26,13 +26,13 @@ function TimeLine() {
         } timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-200`}
       >
         <li>
-          <div className="timeline-start text-slate ">2019</div>
+          <div className="timeline-start text-slate-200">2019</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -44,17 +44,17 @@ function TimeLine() {
           <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Nackademin VR Dev
           </div>
-          <hr />
+          <hr className="bg-slate-400" />
         </li>
         <li>
-          <hr />
-          <div className="timeline-start">2020</div>
+          <hr className="bg-slate-400" />
+          <div className="timeline-start text-slate-200">2020</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -66,17 +66,17 @@ function TimeLine() {
           <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Flowtropolis
           </div>
-          <hr />
+          <hr className="bg-slate-400" />
         </li>
         <li>
-          <hr />
-          <div className="timeline-start">2023</div>
+          <hr className="bg-slate-400" />
+          <div className="timeline-start text-slate-200">2023</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -88,17 +88,17 @@ function TimeLine() {
           <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Python IT Security
           </div>
-          <hr />
+          <hr className="bg-slate-400" />
         </li>
         <li>
-          <hr />
-          <div className="timeline-start">2024</div>
+          <hr className="bg-slate-400" />
+          <div className="timeline-start text-slate-200">2024</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -110,17 +110,17 @@ function TimeLine() {
           <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             Chas Academy IT Security for users
           </div>
-          <hr />
+          <hr className="bg-slate-400" />
         </li>
         <li>
-          <hr />
-          <div className="timeline-start">2024</div>
+          <hr className="bg-slate-400" />
+          <div className="timeline-start text-slate-200">2024</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -132,17 +132,17 @@ function TimeLine() {
           <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
             InfinityITC Intern
           </div>
-          <hr />
+          <hr className="bg-slate-400" />
         </li>
         <li>
-          <hr />
-          <div className="timeline-start">Now</div>
+          <hr className="bg-slate-400" />
+          <div className="timeline-start text-slate-200">Now</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="text-slate-200 h-5 w-5"
             >
               <path
                 fillRule="evenodd"

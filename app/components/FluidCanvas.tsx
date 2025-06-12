@@ -1,8 +1,9 @@
 "use client";
 
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
+import { createResizeHandler } from "./resizeHandler";
 
 export default function FluidCanvas() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -45,7 +46,8 @@ export default function FluidCanvas() {
     });
 
     const geometry = new THREE.PlaneGeometry(150, 150);
-    const quadGeometry = new THREE.PlaneGeometry(width, height);
+    // const quadGeometry = new THREE.PlaneGeometry(width, height);
+    const quadGeometry = new THREE.PlaneGeometry(1, 1);
 
     const rippleTexture = new THREE.TextureLoader().load(
       "/shader_effect_circle.png"
@@ -185,6 +187,8 @@ export default function FluidCanvas() {
 
     const clock = new THREE.Clock();
 
+    const cleanupResize = createResizeHandler(renderer, camera, displayMesh);
+
     function animate() {
       clock.getDelta();
 
@@ -223,6 +227,8 @@ export default function FluidCanvas() {
       meshes.forEach((m) => m.geometry.dispose());
       window.removeEventListener("pointerdown", resume);
       window.removeEventListener("keydown", resume);
+
+      cleanupResize();
     };
   }, []);
 
