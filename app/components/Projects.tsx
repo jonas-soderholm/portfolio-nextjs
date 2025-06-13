@@ -6,6 +6,39 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { InfoSkeleton } from "./InfoSkeleton";
 
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="none"
+      className={className}
+    >
+      {visible && <source src={src} type="video/mp4" />}
+    </video>
+  );
+}
+
 function Projects() {
   const containerRef = useRef(null);
   const { darkMode } = useDarkMode();
@@ -118,12 +151,8 @@ function Projects() {
               <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
                 {properties.description}
               </div>
-              <video
+              <LazyVideo
                 src={properties.image}
-                autoPlay
-                muted
-                loop
-                playsInline
                 className="w-full h-full object-cover rounded-xl"
               />
             </>
