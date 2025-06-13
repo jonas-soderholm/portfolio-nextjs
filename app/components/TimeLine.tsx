@@ -41,7 +41,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             Nackademin VR Dev
           </div>
           <hr className="bg-slate-400" />
@@ -63,7 +63,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             Flowtropolis
           </div>
           <hr className="bg-slate-400" />
@@ -85,7 +85,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             Python IT Security
           </div>
           <hr className="bg-slate-400" />
@@ -107,7 +107,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             Chas Academy IT Security for users
           </div>
           <hr className="bg-slate-400" />
@@ -129,7 +129,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             InfinityITC Intern
           </div>
           <hr className="bg-slate-400" />
@@ -151,7 +151,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border-none text-blackish bg-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
             Running{" "}
             <a
               href="https://juporia.com"

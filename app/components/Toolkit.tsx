@@ -66,12 +66,10 @@ function Toolkit() {
     title: string
   ) => (
     <div
-      className="font-bold bg-slate-200 text-gray-200 p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
-       justify-center rounded-xl shadow-2xl relative md:mb-0 mb-[5rem]"
+      className="font-bold border text-gray-200 p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
+       justify-center rounded-xl backdrop-blur bg-slate-400/20 border-slate-200 relative md:mb-0 mb-[5rem]"
       data-aos="fade-up"
     >
-      <BorderBeam />
-
       <div
         className={`font-bold md:text-3xl text-xl absolute top-0 left-0 right-0 md:mt-[-4rem] mt-[-3.3rem] ${
           darkMode ? "text-dark" : "text-light"
@@ -82,7 +80,7 @@ function Toolkit() {
       {tools.map((tool, index) => (
         <div
           key={tool.name}
-          className="font-bold text-blackish rounded-xl border-slate-500 border px-2 py-1 flex items-center justify-center"
+          className="font-bold text-slate-200 rounded-xl border-slate-200 border px-2 py-1 flex items-center justify-center"
         >
           <div className="p-0 flex items-center">
             <img

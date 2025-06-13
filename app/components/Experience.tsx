@@ -72,7 +72,7 @@ function Experience() {
       ref={containerRef}
     >
       <div className=" flex size-full flex-col max-w-lg max-h-[200px] items-stretch justify-between gap-10">
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between ">
           <Circle ref={div1Ref}>
             <Icons.cv />
           </Circle>
@@ -187,7 +187,7 @@ const Icons = {
       href="https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing"
       target="_blank" // Opens the link in a new tab
       rel="noopener noreferrer" // Security measure
-      className="text-blackish mt-1"
+      className="text-blackish mt-1 "
       style={{
         display: "flex",
         alignItems: "center",
