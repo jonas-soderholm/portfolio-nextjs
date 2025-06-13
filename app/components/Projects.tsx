@@ -36,8 +36,8 @@ function Projects() {
         { logoSrc: "/react-logo.png", name: "React Fiber" },
       ],
       image: "/liquidshader.mp4",
-      url: "https://www.embeddedstarterkit.com/",
-      gitsource: "https://github.com/jonas-soderholm/embedded",
+      url: "https://liquid-interaction.vercel.app/",
+      gitsource: "https://github.com/jonas-soderholm/liquid-interaction",
     },
     {
       title: "Email-based authentication",
