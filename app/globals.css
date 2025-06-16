@@ -4,8 +4,8 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #e1151500;
-  /* background-color: #1a67aa; */
+  background: none;
+  /* background: url("/start_gradient_background.png"); */
 }
 
 @layer utilities {
