@@ -118,62 +118,76 @@ function Projects() {
       image: "/fastxr.mp4",
       gitsource: "https://github.com/jonas-soderholm/vr-showroom",
     },
+    // {
+    //   title: "Embedded Starter Kit",
+    //   description: "Retro styled Embedded links",
+    //   builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
+    //   image: "/embedded.png",
+    //   url: "https://www.embeddedstarterkit.com/",
+    //   gitsource: "https://github.com/jonas-soderholm/embedded",
+    // },
   ];
-  // {
-  //   title: "Embedded Starter Kit",
-  //   description: "Retro styled Embedded links",
-  //   builtWith: [{ logoSrc: "/nextjs-logo.png", name: "NextJS" }],
-  //   image: "/embedded.png",
-  //   url: "https://www.embeddedstarterkit.com/",
-  //   gitsource: "https://github.com/jonas-soderholm/embedded",
-  // },
 
   useEffect(() => {
     AOS.init({ duration: 200 });
   }, []);
 
   function RenderCards() {
-    return cards.map((properties) => (
-      <InfoSkeleton
-        key={properties.title}
-        builtWith={properties.builtWith}
-        url={properties.url}
-        gitsource={properties.gitsource}
-      >
-        <div className="rounded-lg overflow-hidden flex flex-col w-full">
-          {properties.title === "3D Showroom" ||
-          properties.title === "FastXR" ||
-          properties.title === "Liquid Glass Noise Interactor" ? (
-            <>
-              <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
-                {properties.title}
-              </div>
-              <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
-                {properties.description}
-              </div>
-              <LazyVideo
-                src={properties.image}
-                className="w-full h-full object-cover rounded-xl"
-              />
-            </>
-          ) : (
-            <>
-              <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
-                {properties.title}
-              </div>
-              <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
-                {properties.description}
-              </div>
-              <img
-                src={properties.image}
-                alt={properties.title}
-                className="w-full h-full object-cover rounded-xl"
-              />
-            </>
-          )}
-        </div>
-      </InfoSkeleton>
-    ));
+    return cards.map((properties) => {
+      let media;
+      if (
+        properties.title === "3D Showroom" ||
+        properties.title === "FastXR" ||
+        properties.title === "Liquid Glass Noise Interactor"
+      ) {
+        media = (
+          <LazyVideo
+            src={properties.image}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        );
+      } else {
+        media = (
+          <img
+            src={properties.image}
+            alt={properties.title}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        );
+      }
+
+      if (properties.url) {
+        media = (
+          <a
+            href={properties.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            {media}
+          </a>
+        );
+      }
+
+      return (
+        <InfoSkeleton
+          key={properties.title}
+          builtWith={properties.builtWith}
+          url={properties.url}
+          gitsource={properties.gitsource}
+        >
+          <div className="rounded-lg overflow-hidden flex flex-col w-full">
+            <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
+              {properties.title}
+            </div>
+            <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
+              {properties.description}
+            </div>
+            {media}
+          </div>
+        </InfoSkeleton>
+      );
+    });
   }
 
   return (
