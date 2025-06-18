@@ -17,7 +17,7 @@ export function createResizeHandler(
     camera.bottom = height / -2;
     camera.updateProjectionMatrix();
 
-    // ✅ "cover" scaling, like CSS background-size: cover
+    // "cover" scaling, like CSS background-size: cover
     const videoAspect = 16 / 9; // adjust to your video file
     const screenAspect = width / height;
 

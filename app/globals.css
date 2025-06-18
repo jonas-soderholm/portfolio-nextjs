@@ -229,6 +229,10 @@ body {
   background-color: #2b2a2a;
 }
 
+.clip-bottom-only {
+  clip-path: inset(-100px 0px 0px 0px); /* top right bottom left */
+}
+
 /* gradient background.css */
 .video-bg {
   position: fixed;

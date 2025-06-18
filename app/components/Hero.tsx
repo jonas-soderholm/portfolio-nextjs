@@ -122,12 +122,11 @@ function Hero() {
       <div
         className={`${
           darkMode ? "text-dark" : "text-light"
-        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-center overflow-hidden max-w-full md:max-w-[60vw] mx-auto`}
+        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-centerclip-bottom-only max-w-full md:max-w-[60vw] mx-auto`}
       >
-        <div className="w-full overflow-x-hidden"></div>
         <div className="p-0 flex flex-col items-center gap-4 relative w-full">
           <div className="text-center p-5 py-5 w-full">
-            <div className="mainHeader header-font pt-4 overflow-hidden">
+            <div className="mainHeader header-font pt-4 clip-bottom-only">
               <h2
                 className={`font-bold py-0 mb-6 header-font mx-auto ${
                   isPhone ? "text-5xl mt-[-1rem]" : "text-[4vw] leading-tight"
@@ -137,8 +136,12 @@ function Hero() {
                   transform: `translateY(${headerPosition}px)`,
                 }}
               >
-                Hi. I'm Jonas,{" "}
-                <span className="block">A Full Stack Web & XR Developer</span>
+                <div className="text-[6rem] md:text-[9vw] leading-[0.9] mb-4">
+                  Hi. I'm Jonas,{" "}
+                </div>
+                <span className="block text-[2rem] md:text-[4vw] leading-[0.9]">
+                  A Full Stack Web & XR Developer
+                </span>
               </h2>
             </div>
             <div
@@ -148,10 +151,10 @@ function Hero() {
                 transition: "opacity 0.5s ease-in-out",
               }}
             >
-              <h3 className="font-Heebo font-bold text-lg py-0 md:text-2xl max-w-[50rem] mx-auto body-text-medium">
+              {/* <h3 className="font-Heebo font-bold text-lg py-0 md:text-2xl max-w-[50rem] mx-auto body-text-medium">
                 I code solutions for smooth, secure, and easy-to-use
                 applications and ensure efficient deployments using CI/CD.
-              </h3>
+              </h3> */}
             </div>
           </div>
 

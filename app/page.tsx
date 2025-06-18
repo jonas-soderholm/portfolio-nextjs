@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Toolkit from "./components/Toolkit";
 import Projects from "./components/Projects";
-import Experience from "./components/Experience";
+import More from "./components/More";
 import Contact from "./components/Contact";
 import TimeLine from "./components/TimeLine";
 import ClientOnlyFluidCanvas from "./components/ClientOnlyFluidCanvas";
@@ -43,7 +43,7 @@ export default function Home() {
         <Projects />
         <Toolkit />
         <TimeLine />
-        <Experience />
+        <More />
         <Contact />
       </DarkModeWrapper>
     </>

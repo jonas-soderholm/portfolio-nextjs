@@ -1,13 +1,14 @@
 "use client";
 
 import * as THREE from "three";
-import { use, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import { createResizeHandler } from "./resizeHandler";
 
 export default function FluidCanvas() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { darkMode } = useDarkMode();
+  const currentRef = { current: 0 };
 
   useEffect(() => {
     if (!containerRef.current) return;

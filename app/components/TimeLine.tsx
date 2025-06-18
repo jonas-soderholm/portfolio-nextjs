@@ -1,26 +1,15 @@
 "use client";
 
 import React from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
 
 function TimeLine() {
   const { darkMode } = useDarkMode();
 
-  useEffect(() => {
-    AOS.init({ duration: 350 });
-    return () => AOS.refresh();
-  }, [darkMode]);
-
   return (
     <>
       <div id="experience"></div>
       <ul
-        data-aos="zoom-in"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="500"
         className={`${
           darkMode ? "text-blackish" : "text-blackish"
         } timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-200`}
