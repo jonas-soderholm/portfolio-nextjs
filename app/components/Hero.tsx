@@ -1,62 +1,10 @@
+// app/components/Hero.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
-
-interface AddStarProps {
-  initialSize: number;
-  positionX: string;
-  positionY: string;
-  scaleUpTime: number;
-  scaleDownTime: number;
-  remainVisible: boolean;
-  id: string;
-}
-
-function AddStar({
-  initialSize,
-  positionX,
-  positionY,
-  scaleUpTime,
-  scaleDownTime,
-  remainVisible,
-  id,
-}: AddStarProps) {
-  const [size, setSize] = useState(0);
-
-  useEffect(() => {
-    const scaleUpTimeout = setTimeout(() => {
-      setSize(initialSize);
-    }, scaleUpTime);
-
-    const scaleDownTimeout = setTimeout(() => {
-      if (!remainVisible) {
-        setSize(0);
-      }
-    }, scaleDownTime);
-
-    return () => {
-      clearTimeout(scaleUpTimeout);
-      clearTimeout(scaleDownTimeout);
-    };
-  }, [initialSize, scaleUpTime, scaleDownTime, remainVisible]);
-
-  return (
-    <div
-      id={id}
-      className="stars absolute"
-      style={{
-        top: positionY,
-        left: positionX,
-        width: `${size}vw`,
-        height: `${size}vw`,
-        transition: "width 1s, height 2s",
-      }}
-    >
-      <img src="./ai-star.svg" alt="" />
-    </div>
-  );
-}
+import AddStar, { AddStarProps } from "./AddStar";
+import { isMobileDevice } from "@/lib/isMobile"; // ✅ use the shared helper
 
 function Hero() {
   const [headerPosition, setHeaderPosition] = useState(400);
@@ -64,22 +12,17 @@ function Hero() {
   const [isPhone, setIsPhone] = useState(false);
   const { darkMode } = useDarkMode();
 
+  // ✅ single, consistent mobile check (no resize logic)
   useEffect(() => {
-    const checkIsPhone = () => {
-      setIsPhone(window.innerWidth < 768);
-    };
-
-    checkIsPhone();
-    window.addEventListener("resize", checkIsPhone);
-
-    return () => {
-      window.removeEventListener("resize", checkIsPhone);
-    };
+    setIsPhone(isMobileDevice());
   }, []);
 
   const starSizer = isPhone ? 10 : 5;
 
-  const starConfigurations = {
+  const starConfigurations: {
+    phone: AddStarProps[];
+    nonPhone: AddStarProps[];
+  } = {
     phone: [
       {
         initialSize: starSizer,
@@ -156,22 +99,15 @@ function Hero() {
         rotatingStar.style.transform = `rotate(${window.pageYOffset / 2}deg)`;
       }
     };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const animationTimeout = setTimeout(() => {
       setHeaderPosition(0);
-      setTimeout(() => {
-        setUnderHeaderOpacity(1);
-      }, 800);
+      setTimeout(() => setUnderHeaderOpacity(1), 800);
     }, 0);
-
     return () => clearTimeout(animationTimeout);
   }, []);
 
@@ -218,6 +154,7 @@ function Hero() {
               </h3>
             </div>
           </div>
+
           {isPhone
             ? starConfigurations.phone.map((config) => (
                 <AddStar key={config.id} {...config} />

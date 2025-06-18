@@ -60,8 +60,8 @@ function Navbar() {
         z-20 transition-top ease-in-out duration-300 body-text-medium pointer-events-none`}
         style={{
           top: "0",
-          transform: `translateY(${navPos}px)`,
-          transition: "transform 0.3s ease-in-out, color 0.5s ease-in-out",
+          // transform: `translateY(${navPos}px)`,
+          // transition: "transform 0.3s ease-in-out, color 0.5s ease-in-out",
         }}
       >
         <div className="nav-links overflow-hidden pointer-events-auto">

@@ -16,6 +16,7 @@ body {
 
 @layer base {
   :root {
+    --background: 0 0% 0%;
     /* --background: 0 0% 100%; */
     /* --background: 0 0% 0%; */
     /* --foreground: 0 0% 3.9%; */
@@ -44,6 +45,7 @@ body {
     --radius: 0.5rem;
   }
   .dark {
+    --background: 0 0% 0%;
     /* --background: 0 0% 3.9%; */
     /* --background: 0 0% 0%; */
     /* --foreground: 0 0% 98%; */
@@ -77,7 +79,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
   }
 }
 

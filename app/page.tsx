@@ -29,7 +29,7 @@ export default function Home() {
       <div className="fixed inset-0 z-[-10]">
         <img
           src="/start_gradient_background.webp"
-          className="w-full h-full object-cover absolute inset-0 z-[-20] opacity-20 animate-fade-in"
+          className="w-full h-full object-cover absolute inset-0 z-[-20] animate-fade-in"
         />
       </div>
       <DarkModeWrapper>

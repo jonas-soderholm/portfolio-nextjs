@@ -62,7 +62,7 @@ const config: Config = {
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         shine: "shine var(--duration) infinite linear",
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
-        "fade-in": "fadeIn 0.6s ease-out forwards",
+        "fade-in": "fadeIn 0.4s ease-out forwards",
       },
       keyframes: {
         "shimmer-slide": {
@@ -96,7 +96,7 @@ const config: Config = {
           },
         },
         fadeIn: {
-          "0%": { opacity: "0.1" },
+          "0%": { opacity: "0.5" },
           "100%": { opacity: "1" },
         },
         "border-beam": {
