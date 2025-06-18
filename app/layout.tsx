@@ -30,6 +30,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/ai-star.svg" />
+        {/* Preload fallback background image */}
+        <link rel="preload" as="image" href="/start_gradient_background.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

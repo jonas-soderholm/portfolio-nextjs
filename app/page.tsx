@@ -6,21 +6,38 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import TimeLine from "./components/TimeLine";
-import FluidCanvas from "./components/FluidCanvas";
+import ClientOnlyFluidCanvas from "./components/ClientOnlyFluidCanvas";
+import FakeLoadBackground from "./components/MobileBackground";
+
+// Import dynamic from next
+import dynamic from "next/dynamic";
+
+// Lazy-load heavy sections
+const LazyToolkit = dynamic(() => import("./components/Toolkit"), {
+  ssr: false,
+  loading: () => null,
+});
+const LazyProjects = dynamic(() => import("./components/Projects"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Home() {
   return (
     <>
+      {/* SSR-friendly image: always shows instantly */}
+      <div className="fixed inset-0 z-[-10]">
+        <img
+          src="/start_gradient_background.webp"
+          className="w-full h-full object-cover absolute inset-0 z-[-20] opacity-20 animate-fade-in"
+        />
+      </div>
       <DarkModeWrapper>
-        {/* first frame of video as fallback */}
-        <div className="fixed inset-0 z-[-10]">
-          <img
-            src="/start_gradient_background.png"
-            alt="Fallback Background"
-            className="w-full h-full object-cover absolute inset-0 z-[-20] opacity-20 animate-fade-in"
-          />
-        </div>
-        <FluidCanvas />
+        {/* Mobile video or Three.js only after hydration */}
+        <FakeLoadBackground />
+        <ClientOnlyFluidCanvas />
+
+        {/* Rest of UI */}
         <Navbar />
         <Hero />
         <Projects />

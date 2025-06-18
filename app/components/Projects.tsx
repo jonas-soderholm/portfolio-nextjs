@@ -2,8 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { InfoSkeleton } from "./InfoSkeleton";
 
 function LazyVideo({ src, className }: { src: string; className?: string }) {
@@ -127,10 +125,6 @@ function Projects() {
     //   gitsource: "https://github.com/jonas-soderholm/embedded",
     // },
   ];
-
-  useEffect(() => {
-    AOS.init({ duration: 200 });
-  }, []);
 
   function RenderCards() {
     return cards.map((properties) => {

@@ -55,7 +55,7 @@ function Navbar() {
     <>
       <div
         className={`${
-          darkMode ? "text-dark" : "text-dark"
+          darkMode ? "text-light" : "text-light"
         } navbar-containe sticky flex justify-center items-center 
         z-20 transition-top ease-in-out duration-300 body-text-medium pointer-events-none`}
         style={{

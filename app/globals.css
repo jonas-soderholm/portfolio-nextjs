@@ -105,7 +105,8 @@ body {
 
 /* Dark and light mode */
 .text-dark {
-  color: #bababa;
+  /* color: #bababa; */
+  color: #0f172a;
 }
 
 .text-light {
