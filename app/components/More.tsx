@@ -4,6 +4,30 @@ import React from "react";
 
 const links = [
   {
+    href: "https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing",
+    label: "Resume",
+    icon: (
+      <span className="text-4xl" role="img" aria-label="Certificate">
+        📄
+      </span>
+    ),
+  },
+  {
+    href: "https://www.linkedin.com/in/jonas-soderholm/",
+    label: "LinkedIn",
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="#0077B5"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 23.5h5V7.5H0v16zM8 7.5h4.7v2.1h.1c.7-1.3 2.4-2.7 5-2.7 5.3 0 6.3 3.5 6.3 8v9.6h-5V16c0-1.8-.1-4.2-2.6-4.2-2.6 0-3 2-3 4v7.7H8V7.5z" />
+      </svg>
+    ),
+  },
+  {
     href: "https://github.com/jonas-soderholm",
     label: "GitHub",
     icon: (
@@ -32,30 +56,6 @@ const links = [
     ),
   },
   {
-    href: "https://www.linkedin.com/in/jonas-soderholm/",
-    label: "LinkedIn",
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="#0077B5"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 23.5h5V7.5H0v16zM8 7.5h4.7v2.1h.1c.7-1.3 2.4-2.7 5-2.7 5.3 0 6.3 3.5 6.3 8v9.6h-5V16c0-1.8-.1-4.2-2.6-4.2-2.6 0-3 2-3 4v7.7H8V7.5z" />
-      </svg>
-    ),
-  },
-  {
-    href: "https://drive.google.com/file/d/11IvNvj2B3LCG7ArUBy9zGdHqyUMt5E8I/view?usp=sharing",
-    label: "Resume",
-    icon: (
-      <span className="text-4xl" role="img" aria-label="Certificate">
-        📄
-      </span>
-    ),
-  },
-  {
     href: "https://drive.google.com/drive/folders/1o1aGlvrZ2CrpFbpeawMLM4JpNfpWcyHN?usp=sharing",
     label: "Certifications",
     icon: (
@@ -68,7 +68,7 @@ const links = [
 
 export default function Experience() {
   return (
-    <div className="flex items-center justify-center w-full mt-44 gap-12">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 mt-44 w-full max-w-xs md:max-w-2xl mx-auto">
       {links.map(({ href, label, icon }) => (
         <a
           key={label}
@@ -77,7 +77,7 @@ export default function Experience() {
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center"
         >
-          <div className="border size-20 rounded-full bg-slate-400/20 backdrop-blur border-slate-200  transition-colors flex items-center justify-center hover:bg-slate-200/60 ">
+          <div className="border size-20 rounded-full bg-slate-400/20 backdrop-blur border-slate-200 transition-colors flex items-center justify-center hover:bg-slate-200/60">
             {icon}
           </div>
           <span className="text-md text-slate-200 mt-2 font-bold">{label}</span>
