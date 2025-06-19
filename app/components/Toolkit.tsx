@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { BorderBeam } from "./ui/border-beam";
 
 const web_tools = [
   { logoSrc: "/react-logo.png", name: "NextJS/React" },
