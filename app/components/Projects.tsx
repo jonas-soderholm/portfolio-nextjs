@@ -1,12 +1,46 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import { InfoSkeleton } from "./InfoSkeleton";
 
+// function LazyVideo({ src, className }: { src: string; className?: string }) {
+//   const ref = useRef<HTMLVideoElement>(null);
+//   const [visible, setVisible] = React.useState(false);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setVisible(true);
+//           observer.disconnect();
+//         }
+//       },
+//       { rootMargin: "200px" }
+//     );
+//     if (ref.current) observer.observe(ref.current);
+//     return () => observer.disconnect();
+//   }, []);
+
+//   return (
+//     <video
+//       ref={ref}
+//       autoPlay
+//       muted
+//       loop
+//       playsInline
+//       preload="none"
+//       className={className}
+//     >
+//       {visible && <source src={src} type="video/mp4" />}
+//     </video>
+//   );
+// }
+
 function LazyVideo({ src, className }: { src: string; className?: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [visible, setVisible] = React.useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,22 +52,33 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
       },
       { rootMargin: "200px" }
     );
-    if (ref.current) observer.observe(ref.current);
+    if (wrapperRef.current) observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <video
-      ref={ref}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="none"
-      className={className}
+    <div
+      ref={wrapperRef}
+      className={`relative w-full aspect-[16/9] overflow-hidden rounded-xl ${
+        !loaded ? "bg-white" : ""
+      } ${className}`}
     >
-      {visible && <source src={src} type="video/mp4" />}
-    </video>
+      {visible && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onCanPlay={() => setLoaded(true)}
+          className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-700 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      )}
+    </div>
   );
 }
 
