@@ -4,9 +4,43 @@ import React, { useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import { InfoSkeleton } from "./InfoSkeleton";
 
+// function LazyVideo({ src, className }: { src: string; className?: string }) {
+//   const ref = useRef<HTMLVideoElement>(null);
+//   const [visible, setVisible] = React.useState(false);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setVisible(true);
+//           observer.disconnect();
+//         }
+//       },
+//       { rootMargin: "200px" }
+//     );
+//     if (ref.current) observer.observe(ref.current);
+//     return () => observer.disconnect();
+//   }, []);
+
+//   return (
+//     <video
+//       ref={ref}
+//       autoPlay
+//       muted
+//       loop
+//       playsInline
+//       preload="none"
+//       className={className}
+//     >
+//       {visible && <source src={src} type="video/mp4" />}
+//     </video>
+//   );
+// }
+
 function LazyVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [visible, setVisible] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,17 +57,27 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
   }, []);
 
   return (
-    <video
-      ref={ref}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="none"
-      className={className}
-    >
-      {visible && <source src={src} type="video/mp4" />}
-    </video>
+    <div className="relative w-full h-full">
+      <video
+        ref={ref}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        onCanPlay={() => setLoaded(true)} // fires when video has buffered enough
+        className={`${className} transition-opacity duration-700 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {visible && <source src={src} type="video/mp4" />}
+      </video>
+
+      {/* White overlay fade */}
+      {!loaded && (
+        <div className="absolute inset-0 bg-white transition-opacity duration-700 opacity-100 pointer-events-none" />
+      )}
+    </div>
   );
 }
 
@@ -59,6 +103,23 @@ function Projects() {
       gitsource: "https://github.com/jonas-soderholm/juporia",
     },
     {
+      title: "Email-based authentication",
+      description:
+        "Full-stack email-based authentication system with secure JWT tokens, NestJS and Next.js. Includes automated testing and CI/CD pipelines for both frontend and backend.",
+      builtWith: [
+        { logoSrc: "/nestjs-logo.png", name: "NestJS" },
+        { logoSrc: "/nextjs-logo.png", name: "Next.js" },
+        { logoSrc: "/lock.png", name: "JWT" },
+        { logoSrc: "/typescript.png", name: "TypeScript" },
+        { logoSrc: "/prisma-logo.png", name: "Prisma" },
+        { logoSrc: "/jest-logo.png", name: "Jest (Testing)" },
+        { logoSrc: "/githubactions-logo.png", name: "GitHub Actions (CI/CD)" },
+      ],
+      image: "auth-mail.png",
+      url: "https://auth.jonas-soderholm.dev/login",
+      gitsource: "https://github.com/jonas-soderholm/nest-next-auth",
+    },
+    {
       title: "Liquid Glass Noise Interactor",
       description: "Fluid interaction built on top of Three.js and React.",
       builtWith: [
@@ -69,21 +130,6 @@ function Projects() {
       image: "/liquidshader.mp4",
       url: "https://liquid-interaction.vercel.app/",
       gitsource: "https://github.com/jonas-soderholm/liquid-interaction",
-    },
-    {
-      title: "Email-based authentication",
-      description:
-        "Full-stack email-based authentication system with secure JWT tokens, NestJS and Next.js.",
-      builtWith: [
-        { logoSrc: "/nestjs-logo.png", name: "NestJS" },
-        { logoSrc: "/nextjs-logo.png", name: "NextJS" },
-        { logoSrc: "/lock.png", name: "JWT" },
-        { logoSrc: "/typescript.png", name: "TypeScript" },
-        { logoSrc: "/prisma-logo.png", name: "Prisma" },
-      ],
-      image: "auth-mail.png",
-      url: "https://auth.jonas-soderholm.dev/login",
-      gitsource: "https://github.com/jonas-soderholm/nest-next-auth",
     },
     {
       title: "3D Showroom",
