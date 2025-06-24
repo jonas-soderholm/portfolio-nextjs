@@ -4,43 +4,9 @@ import React, { useEffect, useRef } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import { InfoSkeleton } from "./InfoSkeleton";
 
-// function LazyVideo({ src, className }: { src: string; className?: string }) {
-//   const ref = useRef<HTMLVideoElement>(null);
-//   const [visible, setVisible] = React.useState(false);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setVisible(true);
-//           observer.disconnect();
-//         }
-//       },
-//       { rootMargin: "200px" }
-//     );
-//     if (ref.current) observer.observe(ref.current);
-//     return () => observer.disconnect();
-//   }, []);
-
-//   return (
-//     <video
-//       ref={ref}
-//       autoPlay
-//       muted
-//       loop
-//       playsInline
-//       preload="none"
-//       className={className}
-//     >
-//       {visible && <source src={src} type="video/mp4" />}
-//     </video>
-//   );
-// }
-
 function LazyVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [visible, setVisible] = React.useState(false);
-  const [loaded, setLoaded] = React.useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,27 +23,17 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
   }, []);
 
   return (
-    <div className="relative w-full h-full">
-      <video
-        ref={ref}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        onCanPlay={() => setLoaded(true)} // fires when video has buffered enough
-        className={`${className} transition-opacity duration-700 ${
-          loaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {visible && <source src={src} type="video/mp4" />}
-      </video>
-
-      {/* White overlay fade */}
-      {!loaded && (
-        <div className="absolute inset-0 bg-white transition-opacity duration-700 opacity-100 pointer-events-none" />
-      )}
-    </div>
+    <video
+      ref={ref}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="none"
+      className={className}
+    >
+      {visible && <source src={src} type="video/mp4" />}
+    </video>
   );
 }
 
