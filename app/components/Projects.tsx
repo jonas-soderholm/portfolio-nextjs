@@ -37,10 +37,17 @@ import { InfoSkeleton } from "./InfoSkeleton";
 //   );
 // }
 
-function LazyVideo({ src, className }: { src: string; className?: string }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+function LazyVideo({
+  src,
+  poster,
+  className,
+}: {
+  src: string;
+  poster: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = React.useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,17 +59,23 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
       },
       { rootMargin: "200px" }
     );
-    if (wrapperRef.current) observer.observe(wrapperRef.current);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
-      ref={wrapperRef}
-      className={`relative w-full aspect-[16/9] overflow-hidden rounded-xl ${
-        !loaded ? "bg-white" : ""
-      } ${className}`}
+      ref={ref}
+      className={`relative w-full aspect-[16/9] overflow-hidden rounded-xl ${className}`}
     >
+      {/* Always show thumbnail */}
+      <img
+        src={poster}
+        alt="Thumbnail"
+        className="w-full h-full object-cover absolute top-0 left-0"
+      />
+
+      {/* Replace with video when ready */}
       {visible && (
         <video
           autoPlay
@@ -70,10 +83,7 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
           loop
           playsInline
           preload="auto"
-          onCanPlay={() => setLoaded(true)}
-          className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-700 ${
-            loaded ? "opacity-100" : "opacity-0"
-          }`}
+          className="w-full h-full object-cover absolute top-0 left-0"
         >
           <source src={src} type="video/mp4" />
         </video>
@@ -131,6 +141,7 @@ function Projects() {
       image: "/liquidshader.mp4",
       url: "https://liquid-interaction.vercel.app/",
       gitsource: "https://github.com/jonas-soderholm/liquid-interaction",
+      poster: "liquid_thumbnail.png",
     },
     {
       title: "3D Showroom",
@@ -144,6 +155,7 @@ function Projects() {
       image: "/ktm450.mp4",
       url: "https://project-450.netlify.app/",
       gitsource: "https://github.com/jonas-soderholm/450exc-project",
+      poster: "ktm_thumbnail.png",
     },
     {
       title: "FastXR",
@@ -162,6 +174,7 @@ function Projects() {
       ],
       image: "/fastxr.mp4",
       gitsource: "https://github.com/jonas-soderholm/vr-showroom",
+      poster: "xr_thumbnail.png",
     },
     // {
     //   title: "Embedded Starter Kit",
@@ -184,6 +197,7 @@ function Projects() {
         media = (
           <LazyVideo
             src={properties.image}
+            poster={properties.poster ?? ""}
             className="w-full h-full object-cover rounded-xl"
           />
         );
