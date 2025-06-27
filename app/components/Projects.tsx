@@ -404,7 +404,6 @@ function Projects() {
         { logoSrc: "/meta-logo.png", name: "React" },
         { logoSrc: "/django.png", name: "Django" },
         { logoSrc: "/azure.png", name: "Azure" },
-        { logoSrc: "/unity-logo.png", name: "Unity" },
         { logoSrc: "/csharp-logo.png", name: "C#" },
         { logoSrc: "/js-logo.png", name: "JS" },
       ],
