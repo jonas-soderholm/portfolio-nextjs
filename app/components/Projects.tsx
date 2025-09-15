@@ -16,7 +16,7 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "300px" } // preload earlier before scroll
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -29,7 +29,8 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
       muted
       loop
       playsInline
-      preload="none"
+      preload="metadata" // load first frame early
+      poster="/video-thumbnail.jpg" //fallback image
       className={className}
     >
       {visible && <source src={src} type="video/mp4" />}
