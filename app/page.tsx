@@ -13,14 +13,15 @@ import FakeLoadBackground from "./components/MobileBackground";
 import dynamic from "next/dynamic";
 
 // Lazy-load heavy sections
-const LazyToolkit = dynamic(() => import("./components/Toolkit"), {
-  ssr: false,
-  loading: () => null,
-});
-const LazyProjects = dynamic(() => import("./components/Projects"), {
-  ssr: false,
-  loading: () => null,
-});
+// const LazyToolkit = dynamic(() => import("./components/Toolkit"), {
+//   ssr: false,
+//   loading: () => null,
+// });
+
+// const LazyProjects = dynamic(() => import("./components/Projects"), {
+//   ssr: false,
+//   loading: () => null,
+// });
 
 export default function Home() {
   return (
