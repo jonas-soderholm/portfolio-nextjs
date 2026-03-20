@@ -53,7 +53,7 @@ function Projects() {
           observer.disconnect();
         }
       },
-      { rootMargin: "0px" }
+      { rootMargin: "0px" },
     );
 
     if (containerRef.current) {
@@ -64,6 +64,20 @@ function Projects() {
   }, []);
 
   const cards = [
+    {
+      title: "AI Voice Assistant",
+      description:
+        "AI-röstassistent som svarar på samtal, pratar med kunder och bokar möten automatiskt.",
+      builtWith: [
+        { logoSrc: "/nextjs-logo.png", name: "NextJS" },
+        { logoSrc: "/react-logo.png", name: "React" },
+        { logoSrc: "/tailwind-logo.png", name: "Tailwind" },
+      ],
+      image: "/svario.png",
+      url: "https://callflow-jade.vercel.app/",
+      gitsource: "https://github.com/jonas-soderholm/callflow",
+      poster: "svario.png",
+    },
     {
       title: "Juporia (SaaS)",
       description:
@@ -97,19 +111,19 @@ function Projects() {
       url: "https://auth.jonas-soderholm.dev/login",
       gitsource: "https://github.com/jonas-soderholm/nest-next-auth",
     },
-    {
-      title: "Liquid Glass Noise Interactor",
-      description: "Fluid interaction built on top of Three.js and React.",
-      builtWith: [
-        { logoSrc: "/nextjs-logo.png", name: "NextJS" },
-        { logoSrc: "/threejs-logo.png", name: "Three.js" },
-        { logoSrc: "/react-logo.png", name: "React Fiber" },
-      ],
-      image: "/liquidshader.mp4",
-      url: "https://liquid-interaction.vercel.app/",
-      gitsource: "https://github.com/jonas-soderholm/liquid-interaction",
-      poster: "liquid_thumbnail.png",
-    },
+    // {
+    //   title: "Liquid Glass Noise Interactor",
+    //   description: "Fluid interaction built on top of Three.js and React.",
+    //   builtWith: [
+    //     { logoSrc: "/nextjs-logo.png", name: "NextJS" },
+    //     { logoSrc: "/threejs-logo.png", name: "Three.js" },
+    //     { logoSrc: "/react-logo.png", name: "React Fiber" },
+    //   ],
+    //   image: "/liquidshader.mp4",
+    //   url: "https://liquid-interaction.vercel.app/",
+    //   gitsource: "https://github.com/jonas-soderholm/liquid-interaction",
+    //   poster: "liquid_thumbnail.png",
+    // },
     {
       title: "3D Showroom",
       description:
