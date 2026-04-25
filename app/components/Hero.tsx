@@ -14,7 +14,7 @@ function Hero() {
         <div className="flex-1 space-y-6">
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs md:text-sm font-medium tracking-wide backdrop-blur text-card-foreground">
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-400" />
-            Open to full-time & freelance
+            Open to freelance
           </p>
 
           <div className="space-y-3">
@@ -30,7 +30,7 @@ function Hero() {
 
             <p className="max-w-xl text-sm sm:text-base md:text-lg text-muted-foreground">
               I design and build fast, production-ready web and immersive
-              experiences — from idea to deployment. Focused on clean UX,
+              experiences, from idea to deployment. Focused on clean UX,
               maintainable code, and workflows that scale with real teams.
             </p>
           </div>
@@ -79,9 +79,6 @@ function Hero() {
                     Product-grade web & XR experiences
                   </p>
                 </div>
-                <div className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-200">
-                  Available soon
-                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3 text-xs sm:text-sm">
@@ -102,7 +99,7 @@ function Hero() {
                     Strength
                   </p>
                   <p className="mt-1 text-sm font-semibold">
-                    DX, performance, UX
+                    Full stack, UX, Ai
                   </p>
                 </div>
               </div>

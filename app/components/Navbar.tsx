@@ -76,13 +76,13 @@ function Navbar() {
                 backdrop-blur-md mt-5 overflow-hidden bg-card/80 border border-border"
             >
               <div className="flex gap-0 items-center ">
-                <ClassicNavLinks sectionId="projects">Projects</ClassicNavLinks>
+                {/* <ClassicNavLinks sectionId="projects">Projects</ClassicNavLinks> */}
                 <ClassicNavLinks sectionId="toolkit">Toolkit</ClassicNavLinks>
                 <div className="darkmode-normal">
-                  {/* <DarkModeButton /> */}
+                  <DarkModeButton />
                 </div>
-                <ClassicNavLinks sectionId="experience">More</ClassicNavLinks>
-                <ClassicNavLinks sectionId="contact">Contact</ClassicNavLinks>
+                {/* <ClassicNavLinks sectionId="experience">More</ClassicNavLinks> */}
+                {/* <ClassicNavLinks sectionId="contact">Contact</ClassicNavLinks> */}
               </div>
             </li>
           </ul>

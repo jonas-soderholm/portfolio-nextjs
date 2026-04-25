@@ -33,6 +33,7 @@ export default function Home() {
         {/* <TimeLine /> */}
         {/* <More /> */}
         {/* <Contact /> */}
+        <div className="pb-20"></div>
       </DarkModeWrapper>
     </>
   );
