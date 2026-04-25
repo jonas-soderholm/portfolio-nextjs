@@ -54,10 +54,8 @@ function Navbar() {
   return (
     <>
       <div
-        className={`${
-          darkMode ? "text-light" : "text-light"
-        } navbar-containe sticky flex justify-center items-center 
-        z-20 transition-top ease-in-out duration-300 body-text-medium pointer-events-none`}
+        className="navbar-containe sticky flex justify-center items-center 
+        z-20 transition-top ease-in-out duration-300 body-text-medium pointer-events-none text-foreground"
         style={{
           top: "0",
           // transform: `translateY(${navPos}px)`,
@@ -73,16 +71,15 @@ function Navbar() {
               rel="noopener noreferrer"
             ></a>
             <li
-              className={`${darkMode ? "bg-black/40" : "bg-black/40"} 
-              rounded-full md:px-5 px-3 py-2 
+              className="rounded-full md:px-5 px-3 py-2 
                 md:text-[1rem] text-[3.5vw] 
-                backdrop-blur-md mt-5 overflow-hidden`}
+                backdrop-blur-md mt-5 overflow-hidden bg-card/80 border border-border"
             >
               <div className="flex gap-0 items-center ">
                 <ClassicNavLinks sectionId="projects">Projects</ClassicNavLinks>
                 <ClassicNavLinks sectionId="toolkit">Toolkit</ClassicNavLinks>
                 <div className="darkmode-normal">
-                  <DarkModeButton />
+                  {/* <DarkModeButton /> */}
                 </div>
                 <ClassicNavLinks sectionId="experience">More</ClassicNavLinks>
                 <ClassicNavLinks sectionId="contact">Contact</ClassicNavLinks>

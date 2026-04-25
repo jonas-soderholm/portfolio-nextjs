@@ -19,9 +19,7 @@ function Contact() {
       data-aos-offset="150"
       data-aos-easing="ease-in-sine"
       id="contact"
-      className={`${
-        darkMode ? "text-dark" : "text-light"
-      } contact-container py-36 `}
+      className="contact-container py-36 text-foreground"
     >
       <h1 className="contact-header flex flex-col items-center font-bold mb-2 md:text-7xl text-4xl header-font">
         Contact

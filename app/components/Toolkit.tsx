@@ -62,24 +62,20 @@ function Toolkit() {
 
   const renderToolSection = (
     tools: { logoSrc: string; name: string }[],
-    title: string
+    title: string,
   ) => (
     <div
-      className="font-bold border text-gray-200 p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
-       justify-center rounded-xl backdrop-blur bg-slate-400/20 border-slate-200 relative md:mb-0 mb-[5rem]"
+      className="font-bold border text-foreground p-5 flex flex-wrap md:gap-5 gap-3 items-center max-w-xl md:h-[18rem]
+       justify-center rounded-xl backdrop-blur bg-card/20 border-border relative md:mb-0 mb-[5rem]"
       data-aos="fade-up"
     >
-      <div
-        className={`font-bold md:text-3xl text-xl absolute top-0 left-0 right-0 md:mt-[-4rem] mt-[-3.3rem] ${
-          darkMode ? "text-dark" : "text-light"
-        }`}
-      >
+      <div className="font-bold md:text-3xl text-xl absolute top-0 left-0 right-0 md:mt-[-4rem] mt-[-3.3rem] text-foreground">
         {title}
       </div>
       {tools.map((tool, index) => (
         <div
           key={tool.name}
-          className="font-bold text-slate-200 rounded-xl border-slate-200 border px-2 py-1 flex items-center justify-center"
+          className="font-bold text-foreground rounded-xl border-border border px-2 py-1 flex items-center justify-center"
         >
           <div className="p-0 flex items-center">
             <img
@@ -98,9 +94,7 @@ function Toolkit() {
     <>
       <div
         id="toolkit"
-        className={`toolkit-header ${
-          darkMode ? "text-dark" : "text-light"
-        } flex bg-transparent justify-center text-center`}
+        className="toolkit-header flex bg-transparent justify-center text-center text-foreground6"
       >
         <div
           data-aos="fade-right"

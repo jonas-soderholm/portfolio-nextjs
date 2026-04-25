@@ -200,10 +200,10 @@ function Projects() {
           gitsource={properties.gitsource}
         >
           <div className="rounded-lg overflow-hidden flex flex-col w-full">
-            <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-blackish leading-[0.9] mb-4 mt-4">
+            <div className="text-[2rem] md:text-[4rem] xl:text-[8rem] header-font text-foreground leading-[0.9] mb-4 mt-4">
               {properties.title}
             </div>
-            <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-blackish leading-tight mb-8">
+            <div className="text-[1rem] md:text-[1.5rem] xl:text-[2.5rem] text-foreground leading-tight mb-8">
               {properties.description}
             </div>
             {media}
@@ -215,11 +215,7 @@ function Projects() {
 
   return (
     <>
-      <div
-        className={`toolkit-header ${
-          darkMode ? "text-dark" : "text-light"
-        } project-header flex flex-col items-center text-center md:text-7xl text-4xl mt-36 mb-10`}
-      >
+      <div className="toolkit-header project-header flex flex-col items-center text-center md:text-7xl text-4xl mt-36 mb-10 text-foreground">
         <div className="font-bold header-font">Solo Projects</div>
         <div className="text-2xl body-text-medium">
           Have a look at my latest work!

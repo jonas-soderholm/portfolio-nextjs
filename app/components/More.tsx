@@ -35,7 +35,7 @@ const links = [
         width="32"
         height="32"
         viewBox="0 0 24 24"
-        fill="black"
+        fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -77,10 +77,12 @@ export default function Experience() {
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center"
         >
-          <div className="border size-20 rounded-full bg-slate-400/20 backdrop-blur border-slate-200 transition-colors flex items-center justify-center hover:bg-slate-200/60">
+          <div className="border size-20 rounded-full bg-card/20 backdrop-blur border-border transition-colors flex items-center justify-center hover:bg-card/60">
             {icon}
           </div>
-          <span className="text-md text-slate-200 mt-2 font-bold">{label}</span>
+          <span className="text-md text-foreground mt-2 font-bold">
+            {label}
+          </span>
         </a>
       ))}
     </div>

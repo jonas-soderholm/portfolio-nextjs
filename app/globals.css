@@ -4,8 +4,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: none;
-  /* background: url("/start_gradient_background.png"); */
+  /* background-color: #f8fafc; */
 }
 
 @layer utilities {
@@ -121,11 +120,11 @@ body {
 }
 
 .bg-light {
-  /* background-color: #cccccc; */
+  background-color: #f8fafc;
 }
 
 .bg-dark {
-  /* background-color: #000000; */
+  background-color: #020617;
 }
 
 .nav-bar-light {
@@ -143,7 +142,9 @@ body {
 .bg-dark,
 .nav-bar-light,
 .nav-bar-dark {
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition:
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out;
 }
 
 @media (max-width: 768px) {

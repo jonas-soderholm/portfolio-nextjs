@@ -34,7 +34,7 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/start_gradient_background.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>

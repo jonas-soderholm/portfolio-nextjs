@@ -16,13 +16,11 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
 
-    // Toggle body color here
+    // Toggle the "dark" class on the html element for Tailwind dark mode
     if (darkMode) {
-      document.body.classList.remove("bg-dark");
-      document.body.classList.add("bg-light");
+      document.documentElement.classList.remove("dark");
     } else {
-      document.body.classList.remove("bg-light");
-      document.body.classList.add("bg-dark");
+      document.documentElement.classList.add("dark");
     }
   };
 

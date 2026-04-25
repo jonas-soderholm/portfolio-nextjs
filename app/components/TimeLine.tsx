@@ -9,19 +9,15 @@ function TimeLine() {
   return (
     <>
       <div id="experience"></div>
-      <ul
-        className={`${
-          darkMode ? "text-blackish" : "text-blackish"
-        } timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-stone-200`}
-      >
+      <ul className="timeline timeline-vertical lg:flex lg:justify-center mr-28 md:mr-0 lg:timeline-horizontal mt-40 text-foreground">
         <li>
-          <div className="timeline-start text-slate-200">2019</div>
+          <div className="timeline-start text-foreground">2019</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="text-slate-200 h-5 w-5"
+              className="text-foreground h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -30,14 +26,14 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 border-border text-foreground">
             Nackademin VR Dev
           </div>
           <hr className="bg-slate-400" />
         </li>
         <li>
           <hr className="bg-slate-400" />
-          <div className="timeline-start text-slate-200">2020</div>
+          <div className="timeline-start text-foreground">2019</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,20 +48,20 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 bg-slate-200 border-border text-slate-200">
             Flowtropolis
           </div>
           <hr className="bg-slate-400" />
         </li>
         <li>
           <hr className="bg-slate-400" />
-          <div className="timeline-start text-slate-200">2023</div>
+          <div className="timeline-start text-foreground">2020</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="text-slate-200 h-5 w-5"
+              className="text-foreground h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -74,14 +70,14 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 bg-slate-200 border-border text-slate-200">
             Python IT Security
           </div>
           <hr className="bg-slate-400" />
         </li>
         <li>
           <hr className="bg-slate-400" />
-          <div className="timeline-start text-slate-200">2024</div>
+          <div className="timeline-start text-foreground">2023</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,14 +92,14 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 bg-slate-200 border-border text-slate-200">
             Chas Academy IT Security for users
           </div>
           <hr className="bg-slate-400" />
         </li>
         <li>
           <hr className="bg-slate-400" />
-          <div className="timeline-start text-slate-200">2024</div>
+          <div className="timeline-start text-foreground">2024</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,14 +114,14 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 bg-slate-200 border-border text-slate-200">
             InfinityITC Intern
           </div>
           <hr className="bg-slate-400" />
         </li>
         <li>
           <hr className="bg-slate-400" />
-          <div className="timeline-start text-slate-200">Now</div>
+          <div className="timeline-start text-foreground">Now</div>
           <div className="timeline-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +136,7 @@ function TimeLine() {
               />
             </svg>
           </div>
-          <div className="timeline-end timeline-box border backdrop-blur bg-slate-400/20 bg-slate-200 border-slate-200 text-slate-200">
+          <div className="timeline-end timeline-box border backdrop-blur bg-card/20 bg-slate-200 border-border text-slate-200">
             Running{" "}
             <a
               href="https://juporia.com"

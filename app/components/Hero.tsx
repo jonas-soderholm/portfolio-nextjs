@@ -1,173 +1,133 @@
 // app/components/Hero.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDarkMode } from "./DarkModeContext";
-import AddStar, { AddStarProps } from "./AddStar";
-import { isMobileDevice } from "@/lib/isMobile"; // ✅ use the shared helper
 
 function Hero() {
-  const [headerPosition, setHeaderPosition] = useState(400);
-  const [underHeaderOpacity, setUnderHeaderOpacity] = useState(0);
-  const [isPhone, setIsPhone] = useState(false);
   const { darkMode } = useDarkMode();
 
-  // ✅ single, consistent mobile check (no resize logic)
-  useEffect(() => {
-    setIsPhone(isMobileDevice());
-  }, []);
-
-  const starSizer = isPhone ? 10 : 5;
-
-  const starConfigurations: {
-    phone: AddStarProps[];
-    nonPhone: AddStarProps[];
-  } = {
-    phone: [
-      {
-        initialSize: starSizer,
-        positionX: "40%",
-        positionY: "-20%",
-        scaleUpTime: 500,
-        scaleDownTime: 900,
-        remainVisible: false,
-        id: "phoneStar1",
-      },
-      {
-        initialSize: starSizer + 5,
-        positionX: "70%",
-        positionY: "-40%",
-        scaleUpTime: 700,
-        scaleDownTime: 1200,
-        remainVisible: false,
-        id: "phoneStar2",
-      },
-      {
-        initialSize: starSizer + 2,
-        positionX: "20%",
-        positionY: "110%",
-        scaleUpTime: 1000,
-        scaleDownTime: 1500,
-        remainVisible: false,
-        id: "phoneStar3",
-      },
-      {
-        initialSize: starSizer - 1,
-        positionX: "46%",
-        positionY: "122%",
-        scaleUpTime: 1500,
-        scaleDownTime: 2000,
-        remainVisible: true,
-        id: "starRotator",
-      },
-    ],
-    nonPhone: [
-      {
-        initialSize: starSizer - 1,
-        positionX: "80%",
-        positionY: "20%",
-        scaleUpTime: 500,
-        scaleDownTime: 900,
-        remainVisible: false,
-        id: "nonPhoneStar1",
-      },
-      {
-        initialSize: starSizer + 3,
-        positionX: "70%",
-        positionY: "-20%",
-        scaleUpTime: 700,
-        scaleDownTime: 1000,
-        remainVisible: false,
-        id: "nonPhoneStar2",
-      },
-      {
-        initialSize: starSizer - 2,
-        positionX: "48%",
-        positionY: "110%",
-        scaleUpTime: 800,
-        scaleDownTime: 2000,
-        remainVisible: true,
-        id: "starRotator",
-      },
-    ],
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const rotatingStar = document.getElementById("starRotator");
-      if (rotatingStar) {
-        rotatingStar.style.transform = `rotate(${window.pageYOffset / 2}deg)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const animationTimeout = setTimeout(() => {
-      setHeaderPosition(0);
-      setTimeout(() => setUnderHeaderOpacity(1), 800);
-    }, 0);
-    return () => clearTimeout(animationTimeout);
-  }, []);
-
   return (
-    <div
-      className="main-container pointer flex justify-center items-center mb-20"
-      style={{
-        transition: "transform 0.3s ease-in-out",
-        transform: `translateY(-${0}px)`,
-      }}
-    >
-      <div
-        className={`${
-          darkMode ? "text-dark" : "text-light"
-        } hero-content rounded-xl h-[85vh] flex flex-col items-center justify-centerclip-bottom-only max-w-full md:max-w-[60vw] mx-auto`}
-      >
-        <div className="p-0 flex flex-col items-center gap-4 relative w-full">
-          <div className="text-center p-5 py-5 w-full">
-            <div className="mainHeader header-font pt-4 clip-bottom-only">
-              <h2
-                className={`font-bold py-0 mb-6 header-font mx-auto ${
-                  isPhone ? "text-5xl mt-[-1rem]" : "text-[4vw] leading-tight"
-                }`}
-                style={{
-                  transition: "transform 0.6s ease-in-out",
-                  transform: `translateY(${headerPosition}px)`,
-                }}
-              >
-                <div className="text-[6rem] md:text-[9vw] leading-[0.9] mb-4">
-                  Hi. I'm Jonas,{" "}
-                </div>
-                <span className="block text-[2rem] md:text-[4vw] leading-[0.9]">
-                  A Full Stack Web & XR Developer
-                </span>
-              </h2>
-            </div>
-            <div
-              className="underHeader text-center"
-              style={{
-                opacity: underHeaderOpacity,
-                transition: "opacity 0.5s ease-in-out",
-              }}
-            >
-              {/* <h3 className="font-Heebo font-bold text-lg py-0 md:text-2xl max-w-[50rem] mx-auto body-text-medium">
-                I code solutions for smooth, secure, and easy-to-use
-                applications and ensure efficient deployments using CI/CD.
-              </h3> */}
-            </div>
+    <section className="relative flex items-center justify-center mb-20 px-4 md:px-8 lg:px-12 text-foreground">
+      <div className="relative z-10 flex w-full max-w-6xl flex-col gap-10 md:flex-row md:items-center">
+        {/* Left: main intro */}
+        <div className="flex-1 space-y-6">
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs md:text-sm font-medium tracking-wide backdrop-blur text-card-foreground">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400" />
+            Open to full-time & freelance
+          </p>
+
+          <div className="space-y-3">
+            <h1 className="header-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95]">
+              <span className="block text-sm md:text-base font-normal tracking-[0.25em] uppercase text-emerald-300/90">
+                Jonas • Portfolio 2026
+              </span>
+              <span className="mt-2 block">Full Stack</span>
+              <span className="block bg-gradient-to-r from-emerald-300 via-sky-300 to-violet-300 bg-clip-text text-transparent">
+                Web & XR Developer
+              </span>
+            </h1>
+
+            <p className="max-w-xl text-sm sm:text-base md:text-lg text-muted-foreground">
+              I design and build fast, production-ready web and immersive
+              experiences — from idea to deployment. Focused on clean UX,
+              maintainable code, and workflows that scale with real teams.
+            </p>
           </div>
 
-          {isPhone
-            ? starConfigurations.phone.map((config) => (
-                <AddStar key={config.id} {...config} />
-              ))
-            : starConfigurations.nonPhone.map((config) => (
-                <AddStar key={config.id} {...config} />
-              ))}
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-2.5 text-sm md:text-base font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:-translate-y-0.5 hover:bg-emerald-300"
+            >
+              View selected work
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-full border border-border bg-card/80 px-6 py-2.5 text-sm md:text-base font-medium text-card-foreground backdrop-blur transition hover:-translate-y-0.5 hover:border-emerald-300/60"
+            >
+              Let’s build something
+            </a>
+          </div>
+
+          {/* quick meta row */}
+          <div className="mt-4 flex flex-wrap gap-4 text-xs sm:text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-7 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400" />
+              <span>Based in Stockholm • Remote friendly</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-7 rounded-full bg-gradient-to-r from-violet-400 to-fuchsia-400" />
+              <span>Typescript, Next.js, Three/Fiber, Node</span>
+            </div>
+          </div>
         </div>
+
+        {/* Right: compact “profile card” showing credibility */}
+        <aside className="flex-1 md:max-w-sm">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card/80 p-5 backdrop-blur">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.11)_0,_transparent_60%)]" />
+
+            <div className="relative z-10 space-y-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    Currently crafting
+                  </p>
+                  <p className="text-sm font-medium text-foreground">
+                    Product-grade web & XR experiences
+                  </p>
+                </div>
+                <div className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-200">
+                  Available soon
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 text-xs sm:text-sm">
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <p className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">
+                    Experience
+                  </p>
+                  <p className="mt-1 text-lg font-semibold">4+ yrs</p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <p className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">
+                    Focus
+                  </p>
+                  <p className="mt-1 text-sm font-semibold">Full Stack • XR</p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <p className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">
+                    Strength
+                  </p>
+                  <p className="mt-1 text-sm font-semibold">
+                    DX, performance, UX
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                {[
+                  "Next.js",
+                  "React Three Fiber",
+                  "TypeScript",
+                  "Node.js",
+                  "Tailwind",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-border bg-card/60 px-3 py-1 text-[0.7rem] uppercase tracking-wide text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </div>
+    </section>
   );
 }
 
